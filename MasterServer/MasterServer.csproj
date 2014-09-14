@@ -51,6 +51,7 @@
       <HintPath>..\Reference\SuperSocket\Net40\Debug\SuperSocket.SocketService.exe</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />

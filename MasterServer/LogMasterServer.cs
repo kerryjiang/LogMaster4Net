@@ -1,4 +1,5 @@
-﻿using SuperSocket.ProtoBase;
+﻿using LogMaster4Net.Base;
+using SuperSocket.ProtoBase;
 using SuperSocket.SocketBase;
 using SuperSocket.SocketBase.Config;
 using SuperSocket.SocketBase.Logging;
@@ -11,12 +12,19 @@ using System.Threading;
 
 namespace LogMaster4Net.MasterServer
 {
-    public class LogMasterServer : AppServer<AppSession>
+    public class LogMasterServer : AppServer<LoggingSession, LoggingPackageInfo>
     {
         private ILog m_LogMasterLog;
 
+        private ILoggingDeserializer m_LoggingDeserializer;
+
+        internal ILoggingDeserializer LoggingDeserializer
+        {
+            get { return m_LoggingDeserializer; }
+        }
+
         public LogMasterServer()
-            : base(new DefaultReceiveFilterFactory<LogReceiveFilter, StringPackageInfo>())
+            : base(new DefaultReceiveFilterFactory<LogReceiveFilter, LoggingPackageInfo>())
         {
             this.NewRequestReceived += LogMasterServer_NewRequestReceived;
         }
@@ -24,6 +32,9 @@ namespace LogMaster4Net.MasterServer
         protected override bool Setup(IRootConfig rootConfig, IServerConfig config)
         {
             m_LogMasterLog = LogFactory.GetLog("LogMaster");
+
+            //TODO: setup m_LoggingDeserializer
+
             return base.Setup(rootConfig, config);
         }
 
@@ -45,9 +56,9 @@ namespace LogMaster4Net.MasterServer
             m_Timer = null;
         }
 
-        void LogMasterServer_NewRequestReceived(AppSession session, StringPackageInfo requestInfo)
+        void LogMasterServer_NewRequestReceived(LoggingSession session, LoggingPackageInfo requestInfo)
         {
-            Console.WriteLine(requestInfo.Body);
+            
         }
     }
 }

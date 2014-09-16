@@ -57,8 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LocationInfo.cs" />
-    <Compile Include="LoggingData.cs" />
+    <Compile Include="LoggingPackageInfo.cs" />
     <Compile Include="LoggingSession.cs" />
     <Compile Include="LogMasterServer.cs" />
     <Compile Include="LogReceiveFilter.cs" />
@@ -74,6 +73,12 @@
     <None Include="SuperSocket.SocketService.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Base\LogMaster4Net.Base.csproj">
+      <Project>{ef0d6fb5-5350-42b6-85c2-49c5194d53e5}</Project>
+      <Name>LogMaster4Net.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

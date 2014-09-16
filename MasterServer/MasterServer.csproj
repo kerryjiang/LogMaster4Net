@@ -57,6 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocationInfo.cs" />
+    <Compile Include="LoggingData.cs" />
+    <Compile Include="LoggingSession.cs" />
     <Compile Include="LogMasterServer.cs" />
     <Compile Include="LogReceiveFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

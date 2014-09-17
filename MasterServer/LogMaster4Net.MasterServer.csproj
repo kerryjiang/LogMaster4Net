@@ -51,6 +51,7 @@
       <HintPath>..\Reference\SuperSocket\Net40\Debug\SuperSocket.SocketService.exe</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +79,10 @@
     <ProjectReference Include="..\Base\LogMaster4Net.Base.csproj">
       <Project>{ef0d6fb5-5350-42b6-85c2-49c5194d53e5}</Project>
       <Name>LogMaster4Net.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log4NetAdapter\LogMaster4Net.Log4NetAdapter.csproj">
+      <Project>{94edfb3d-fb54-4025-ad62-8ce9b5341b60}</Project>
+      <Name>LogMaster4Net.Log4NetAdapter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

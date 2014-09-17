@@ -6,13 +6,13 @@ using System.Text;
 
 namespace LogMaster4Net.Base
 {
-    public struct LoggingData
+    public class LoggingData
     {
         public string ApplicationName { get; set; }
 
         public string LoggerName { get; set; }
 
-        public int Level { get; set; }
+        public string Level { get; set; }
 
         public string Message { get; set; }
 

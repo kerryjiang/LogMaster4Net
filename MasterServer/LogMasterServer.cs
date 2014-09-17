@@ -1,4 +1,5 @@
 ﻿using LogMaster4Net.Base;
+using LogMaster4Net.Log4NetAdapter;
 using SuperSocket.ProtoBase;
 using SuperSocket.SocketBase;
 using SuperSocket.SocketBase.Config;
@@ -6,6 +7,7 @@ using SuperSocket.SocketBase.Logging;
 using SuperSocket.SocketBase.Protocol;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,6 +25,9 @@ namespace LogMaster4Net.MasterServer
             get { return m_LoggingDeserializer; }
         }
 
+        //[ImportMany]
+        //private IEnumerable<Lazy<ILoggingDeserializer, ILoggingDeserializerMetadata>> m_LoggingDeserializers;
+
         public LogMasterServer()
             : base(new DefaultReceiveFilterFactory<LogReceiveFilter, LoggingPackageInfo>())
         {
@@ -32,9 +37,7 @@ namespace LogMaster4Net.MasterServer
         protected override bool Setup(IRootConfig rootConfig, IServerConfig config)
         {
             m_LogMasterLog = LogFactory.GetLog("LogMaster");
-
-            //TODO: setup m_LoggingDeserializer
-
+            m_LoggingDeserializer = new Log4NetLoggingDeserializer();
             return base.Setup(rootConfig, config);
         }
 
@@ -58,7 +61,7 @@ namespace LogMaster4Net.MasterServer
 
         void LogMasterServer_NewRequestReceived(LoggingSession session, LoggingPackageInfo requestInfo)
         {
-            
+            Logger.Info(requestInfo.Data.LoggerName);
         }
     }
 }

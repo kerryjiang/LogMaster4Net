@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ILoggingDeserializer.cs" />
+    <Compile Include="ILoggingDeserializerMetadata.cs" />
     <Compile Include="LocationInfo.cs" />
     <Compile Include="LoggingData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

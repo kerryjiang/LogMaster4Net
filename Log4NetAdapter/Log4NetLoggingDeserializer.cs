@@ -1,4 +1,5 @@
 ﻿using LogMaster4Net.Base;
+using SuperSocket.SocketBase.Logging;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;

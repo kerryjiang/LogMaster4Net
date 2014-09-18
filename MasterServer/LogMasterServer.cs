@@ -61,7 +61,7 @@ namespace LogMaster4Net.MasterServer
 
         void LogMasterServer_NewRequestReceived(LoggingSession session, LoggingPackageInfo requestInfo)
         {
-            Logger.Info(requestInfo.Data.LoggerName);
+            Logger.Log(requestInfo.Data);
         }
     }
 }

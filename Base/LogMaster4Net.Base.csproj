@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SuperSocket.SocketBase">
+      <HintPath>..\Reference\SuperSocket\Net40\Debug\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,8 +43,6 @@
   <ItemGroup>
     <Compile Include="ILoggingDeserializer.cs" />
     <Compile Include="ILoggingDeserializerMetadata.cs" />
-    <Compile Include="LocationInfo.cs" />
-    <Compile Include="LoggingData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

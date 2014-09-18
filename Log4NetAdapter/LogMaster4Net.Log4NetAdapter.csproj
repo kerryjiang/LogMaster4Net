@@ -34,6 +34,9 @@
     <Reference Include="log4net">
       <HintPath>..\Reference\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="SuperSocket.SocketBase">
+      <HintPath>..\Reference\SuperSocket\Net40\Debug\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />

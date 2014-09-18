@@ -2587,6 +2587,12 @@
             <param name="arg1">The arg1.</param>
             <param name="arg2">The arg2.</param>
         </member>
+        <member name="M:SuperSocket.SocketBase.Logging.ILog.Log(SuperSocket.SocketBase.Logging.LoggingData)">
+            <summary>
+            Logs the specified logging data.
+            </summary>
+            <param name="loggingData">The logging data.</param>
+        </member>
         <member name="P:SuperSocket.SocketBase.Logging.ILog.IsDebugEnabled">
             <summary>
             Gets a value indicating whether this instance is debug enabled.
@@ -2893,6 +2899,13 @@
             <param name="arg1">The arg1.</param>
             <param name="arg2">The arg2.</param>
         </member>
+        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Log(SuperSocket.SocketBase.Logging.LoggingData)">
+            <summary>
+            Logs the specified logging data.
+            </summary>
+            <param name="loggingData">The logging data.</param>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
         <member name="P:SuperSocket.SocketBase.Logging.ConsoleLog.IsDebugEnabled">
             <summary>
             Gets a value indicating whether this instance is debug enabled.
@@ -2956,6 +2969,59 @@
             </summary>
             <param name="name">The name.</param>
             <returns></returns>
+        </member>
+        <member name="T:SuperSocket.SocketBase.Logging.LocationInfo">
+            <summary>
+            location info
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.ClassName">
+            <summary>
+            Gets or sets the name of the class.
+            </summary>
+            <value>
+            The name of the class.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.FileName">
+            <summary>
+            Gets or sets the name of the file.
+            </summary>
+            <value>
+            The name of the file.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.LineNumber">
+            <summary>
+            Gets or sets the line number.
+            </summary>
+            <value>
+            The line number.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.MethodName">
+            <summary>
+            Gets or sets the name of the method.
+            </summary>
+            <value>
+            The name of the method.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.FullInfo">
+            <summary>
+            Gets or sets the full information.
+            </summary>
+            <value>
+            The full information.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.StackFrames">
+            <summary>
+            Gets or sets the stack frames.
+            </summary>
+            <value>
+            The stack frames.
+            </value>
         </member>
         <member name="T:SuperSocket.SocketBase.Logging.Log4NetLog">
             <summary>
@@ -3228,6 +3294,13 @@
             <param name="arg1">The arg1.</param>
             <param name="arg2">The arg2.</param>
         </member>
+        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Log(SuperSocket.SocketBase.Logging.LoggingData)">
+            <summary>
+            Logs the specified logging data.
+            </summary>
+            <param name="loggingData">The logging data.</param>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
         <member name="P:SuperSocket.SocketBase.Logging.Log4NetLog.IsDebugEnabled">
             <summary>
             Gets a value indicating whether this instance is debug enabled.
@@ -3318,6 +3391,107 @@
             </summary>
             <param name="name">The name.</param>
             <returns></returns>
+        </member>
+        <member name="T:SuperSocket.SocketBase.Logging.LoggingData">
+            <summary>
+            logging data
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.ApplicationName">
+            <summary>
+            Gets or sets the name of the application.
+            </summary>
+            <value>
+            The name of the application.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.LoggerName">
+            <summary>
+            Gets or sets the name of the logger.
+            </summary>
+            <value>
+            The name of the logger.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Level">
+            <summary>
+            Gets or sets the level.
+            </summary>
+            <value>
+            The level.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.ThreadName">
+            <summary>
+            Gets or sets the name of the thread.
+            </summary>
+            <value>
+            The name of the thread.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.TimeStamp">
+            <summary>
+            Gets or sets the time stamp.
+            </summary>
+            <value>
+            The time stamp.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.LocationInfo">
+            <summary>
+            Gets or sets the location information.
+            </summary>
+            <value>
+            The location information.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.UserName">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+            <value>
+            The name of the user.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Identity">
+            <summary>
+            Gets or sets the identity.
+            </summary>
+            <value>
+            The identity.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.ExceptionString">
+            <summary>
+            Gets or sets the exception string.
+            </summary>
+            <value>
+            The exception string.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Domain">
+            <summary>
+            Gets or sets the domain.
+            </summary>
+            <value>
+            The domain.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Properties">
+            <summary>
+            Gets or sets the properties.
+            </summary>
+            <value>
+            The properties.
+            </value>
         </member>
         <member name="T:SuperSocket.SocketBase.Metadata.AppServerMetadataTypeAttribute">
             <summary>

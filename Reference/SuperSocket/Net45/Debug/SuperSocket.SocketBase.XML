@@ -2963,12 +2963,29 @@
             <param name="name">The name.</param>
             <returns></returns>
         </member>
+        <member name="M:SuperSocket.SocketBase.Logging.ILogFactory.GetLog(System.String,System.String)">
+            <summary>
+            Gets the log from the specific repository.
+            </summary>
+            <param name="repositoryName">Name of the repository.</param>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
         <member name="M:SuperSocket.SocketBase.Logging.ConsoleLogFactory.GetLog(System.String)">
             <summary>
             Gets the log by name.
             </summary>
             <param name="name">The name.</param>
             <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLogFactory.GetLog(System.String,System.String)">
+            <summary>
+            Gets the log from the specific repository.
+            </summary>
+            <param name="repositoryName">Name of the repository.</param>
+            <param name="name">The name.</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:SuperSocket.SocketBase.Logging.LocationInfo">
             <summary>
@@ -3364,6 +3381,15 @@
             <param name="name">The name.</param>
             <returns></returns>
         </member>
+        <member name="M:SuperSocket.SocketBase.Logging.LogFactoryBase.GetLog(System.String,System.String)">
+            <summary>
+            Gets the log from the specific repository.
+            </summary>
+            <param name="repositoryName">Name of the repository.</param>
+            <param name="name">The name.</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
         <member name="P:SuperSocket.SocketBase.Logging.LogFactoryBase.ConfigFile">
             <summary>
             Gets the config file file path.
@@ -3389,6 +3415,14 @@
             <summary>
             Gets the log by name.
             </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLogFactory.GetLog(System.String,System.String)">
+            <summary>
+            Gets the log from the specific repository.
+            </summary>
+            <param name="repositoryName">Name of the repository.</param>
             <param name="name">The name.</param>
             <returns></returns>
         </member>

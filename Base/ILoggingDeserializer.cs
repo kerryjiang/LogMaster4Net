@@ -8,6 +8,6 @@ namespace LogMaster4Net.Base
 {
     public interface ILoggingDeserializer
     {
-        LoggingData Deserialize(string log);
+        IList<LoggingData> Deserialize(string log);
     }
 }

@@ -10,15 +10,17 @@ namespace LogMaster4Net.MasterServer
 {
     public class LoggingPackageInfo : IPackageInfo<string>
     {
-        public LoggingPackageInfo(LoggingData data)
+        private const string m_PackageKey = "Logging";
+
+        public LoggingPackageInfo(IList<LoggingData> data)
         {
             Data = data;
         }
-        public LoggingData Data { get; private set; }
+        public IList<LoggingData> Data { get; private set; }
 
         public string Key
         {
-            get { return Data.ApplicationName; }
+            get { return m_PackageKey; }
         }
     }
 }

@@ -43,38 +43,67 @@ namespace LogMaster4Net.Log4NetAdapter
 
             var properties = new StringDictionary();
 
-            while (reader.Read())
+            while (reader.Read() && reader.NodeType != XmlNodeType.EndElement)
             {
                 if (!reader.MoveToFirstAttribute())
+                {
+                    reader.MoveToElement();
                     continue;
+                }                   
 
                 var key = reader.Value;
 
                 if (!reader.MoveToNextAttribute())
+                {
+                    reader.MoveToElement();
                     continue;
+                }
 
                 var value = reader.Value;
 
                 properties.Add(key, value);
+                reader.MoveToElement();
             }
+
+            logging.Properties = properties;
+
+            reader.ReadEndElement();
         }
 
-        public LoggingData Deserialize(string log)
+        public IList<LoggingData> Deserialize(string log)
         {
-            var logging = new LoggingData();
+            var logs = new List<LoggingData>();
 
             var context = new XmlParserContext(null, m_XmlNamespaceManager, null, XmlSpace.None);
             var xmlReader = new XmlTextReader(log, XmlNodeType.Element, context);
+            xmlReader.WhitespaceHandling = WhitespaceHandling.None;
+
+            xmlReader.Read();
+
+            while (xmlReader.NodeType != XmlNodeType.None)
+            {
+                logs.Add(ReadLoggingData(xmlReader));
+            }
+
+            return logs;
+        }
+
+
+        LoggingData ReadLoggingData(XmlReader xmlReader)
+        {
+
+            var logging = new LoggingData();
+
             xmlReader.MoveToContent();
 
             Action<LoggingData, XmlReader> attrAssigner;
 
-            if(xmlReader.MoveToFirstAttribute())
+            if (xmlReader.MoveToFirstAttribute())
             {
                 if (m_AttrAssignersDict.TryGetValue(xmlReader.Name, out attrAssigner))
                     attrAssigner(logging, xmlReader);
 
-                while(xmlReader.MoveToNextAttribute())
+                while (xmlReader.MoveToNextAttribute())
                 {
                     if (m_AttrAssignersDict.TryGetValue(xmlReader.Name, out attrAssigner))
                         attrAssigner(logging, xmlReader);
@@ -83,13 +112,27 @@ namespace LogMaster4Net.Log4NetAdapter
 
             xmlReader.MoveToElement();
 
-            while(xmlReader.Read())
+            if (xmlReader.Read() && xmlReader.NodeType != XmlNodeType.EndElement)
             {
-                if (m_AttrAssignersDict.TryGetValue(xmlReader.LocalName, out attrAssigner))
-                    attrAssigner(logging, xmlReader);
+                while (xmlReader.NodeType != XmlNodeType.EndElement)
+                {
+                    if (string.IsNullOrEmpty(xmlReader.LocalName))
+                        break;
+
+                    if (m_AttrAssignersDict.TryGetValue(xmlReader.LocalName, out attrAssigner))
+                        attrAssigner(logging, xmlReader);
+                    else
+                        xmlReader.Read();
+                }
             }
+
+            if (logging.Properties != null)
+                logging.ApplicationName = logging.Properties["LogAppName"];
+
+            xmlReader.ReadEndElement();
 
             return logging;
         }
+
     }
 }

@@ -11,6 +11,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace LogMaster4Net.MasterServer
 {
@@ -40,8 +41,19 @@ namespace LogMaster4Net.MasterServer
 
         protected override void OnStarted()
         {
-
+            //Task.Factory.StartNew(DoWork);
         }
+
+        //private void DoWork()
+        //{
+        //    var log = LogFactory.GetLog("LogMaster");
+
+        //    while(State == ServerState.Running)
+        //    {
+        //        Thread.Sleep(5000);
+        //        log.InfoFormat("Current Time: {0}", DateTime.Now);
+        //    }
+        //}
 
         protected override void OnStopped()
         {
@@ -50,8 +62,17 @@ namespace LogMaster4Net.MasterServer
 
         void LogMasterServer_NewRequestReceived(LoggingSession session, LoggingPackageInfo requestInfo)
         {
-            var loggingData = requestInfo.Data;
-            this.LogFactory.GetLog(loggingData.ApplicationName, loggingData.LoggerName).Log(loggingData);
+            var loggings = requestInfo.Data;
+
+            for (var i = 0; i < loggings.Count; i++)
+            {
+                var loggingData = loggings[i];
+
+                if (string.IsNullOrEmpty(loggingData.ApplicationName))
+                    LogFactory.GetLog(loggingData.LoggerName).Log(loggingData);
+                else
+                    LogFactory.GetLog(loggingData.ApplicationName, loggingData.LoggerName).Log(loggingData);
+            }
         }
     }
 }

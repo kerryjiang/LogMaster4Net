@@ -18,7 +18,7 @@ LogMaster4Net
 				maxRequestLength="40960">
 	    </server>
 
-2. Logging Configuration
+2. Server Logging Configuration
 
 		\Config\log4net.config: the logging confuguration of the server self;
 		\Config\log4net.[LogAppName].Config : the logging configuration for your application whose name is [LogAppName]};

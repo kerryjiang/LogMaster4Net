@@ -1,7 +1,7 @@
 LogMaster4Net
 =============
 
-**LogMaster4Net** is a central log server which can receive log messages of your other applications and organize them as your demand. It can help you to manage your all applications log messages in a central place. So if you have lots of different applications running and most of them have their own logging, it project would be pretty useful for you.
+**LogMaster4Net** is a central log server which can receive log messages of your other applications and organize them as your demand. It can help you to manage your all applications log messages in a central place. So if you have lots of different applications running and most of them have their own logging, it project will be pretty useful for you.
 
 **LogMaster4Net** is a UDP server and it is base on **SuperSocket**
 

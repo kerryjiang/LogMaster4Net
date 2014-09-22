@@ -30,14 +30,23 @@ namespace LogMaster4Net.Log4NetAdapter
             m_AttrAssignersDict.Add("level", (l, r) => l.Level = r.Value);
             m_AttrAssignersDict.Add("timestamp", (l, r) => l.TimeStamp = DateTime.Parse(r.Value));
             m_AttrAssignersDict.Add("message", (l, r) => l.Message = r.ReadElementContentAsString());
-            m_AttrAssignersDict.Add("properties", (l, r) => AssignProperties(l, r));
+            m_AttrAssignersDict.Add("properties", (l, r) => ReadProperties(l, r));
+            m_AttrAssignersDict.Add("exception", (l, r) => ReadException(l, r));
 
             NameTable nt = new NameTable();
             m_XmlNamespaceManager = new XmlNamespaceManager(nt);
             m_XmlNamespaceManager.AddNamespace("log4net", "urn:log4net");
         }
 
-        private static void AssignProperties(LoggingData logging, XmlReader reader)
+        private static void ReadException(LoggingData logging, XmlReader reader)
+        {
+            reader.Read();
+            logging.ExceptionString = reader.Value;
+            reader.Read();
+            reader.ReadEndElement();
+        }
+
+        private static void ReadProperties(LoggingData logging, XmlReader reader)
         {
             reader.MoveToContent();
 

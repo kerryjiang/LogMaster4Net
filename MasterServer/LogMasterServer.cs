@@ -41,19 +41,8 @@ namespace LogMaster4Net.MasterServer
 
         protected override void OnStarted()
         {
-            //Task.Factory.StartNew(DoWork);
+            
         }
-
-        //private void DoWork()
-        //{
-        //    var log = LogFactory.GetLog("LogMaster");
-
-        //    while(State == ServerState.Running)
-        //    {
-        //        Thread.Sleep(5000);
-        //        log.InfoFormat("Current Time: {0}", DateTime.Now);
-        //    }
-        //}
 
         protected override void OnStopped()
         {

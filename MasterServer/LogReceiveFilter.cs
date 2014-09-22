@@ -18,7 +18,17 @@ namespace LogMaster4Net.MasterServer
 
             using (var reader = this.GetBufferReader(data))
             {
-                return new LoggingPackageInfo(loggingDeserialzier.Deserialize(reader.ReadString(data.Total, Encoding.UTF8)));
+                var logging = reader.ReadString(data.Total, Encoding.UTF8);
+
+                try
+                {
+                    return new LoggingPackageInfo(loggingDeserialzier.Deserialize(logging));
+                }
+                catch(Exception e)
+                {
+                    session.Logger.ErrorFormat("Failed to deserialize the logging:\r\n{0}", logging);
+                    throw e;
+                }                
             }
         }
 

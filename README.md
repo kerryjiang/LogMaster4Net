@@ -15,7 +15,8 @@ LogMaster4Net
 				clearIdleSession="true"
 				idleSessionTimeOut="3600"
 				clearIdleSessionInterval="600"
-				maxRequestLength="40960">
+				maxRequestLength="40960"
+                receiveBufferSize="40960">
 	    </server>
 
 2. Server Logging Configuration

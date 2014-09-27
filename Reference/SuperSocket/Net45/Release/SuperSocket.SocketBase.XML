@@ -507,12 +507,11 @@
             <param name="offset">The offset.</param>
             <param name="length">The length.</param>
         </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.ExecuteCommand(`0,`1)">
+        <member name="M:SuperSocket.SocketBase.AppServer`3.ExecuteCommand(SuperSocket.SocketBase.IRequestExecutingContext{`0,`1})">
             <summary>
             Executes the command.
             </summary>
-            <param name="session">The session.</param>
-            <param name="requestInfo">The request info.</param>
+            <param name="context">The context.</param>
         </member>
         <member name="M:SuperSocket.SocketBase.AppServer`3.ExecuteCommand(SuperSocket.SocketBase.IAppSession,`1)">
             <summary>
@@ -900,43 +899,67 @@
             <param name="exceptionHandler">The exception handler.</param>
             <returns></returns>
         </member>
-        <member name="T:SuperSocket.SocketBase.CommandExecutingContext">
+        <member name="T:SuperSocket.SocketBase.IRequestExecutingContext`2">
             <summary>
-            Command Executing Context
+            The interface for request executing context
+            </summary>
+            <typeparam name="TAppSession">The type of the application session.</typeparam>
+            <typeparam name="TPackageInfo">The type of the package information.</typeparam>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IRequestExecutingContext`2.Session">
+            <summary>
+            Gets the current session.
+            </summary>
+            <value>
+            The session.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IRequestExecutingContext`2.RequestInfo">
+            <summary>
+            Gets the current request.
+            </summary>
+            <value>
+            The request information.
+            </value>
+        </member>
+        <member name="T:SuperSocket.SocketBase.ICommandExecutingContext">
+            <summary>
+            The interface for command excuting context
             </summary>
         </member>
-        <member name="M:SuperSocket.SocketBase.CommandExecutingContext.Initialize(SuperSocket.SocketBase.IAppSession,SuperSocket.ProtoBase.IPackageInfo,SuperSocket.SocketBase.Command.ICommand)">
+        <member name="P:SuperSocket.SocketBase.ICommandExecutingContext.Session">
             <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.CommandExecutingContext"/> class.
+            Gets the session which is executing the command.
             </summary>
-            <param name="session">The session.</param>
-            <param name="requestInfo">The request info.</param>
-            <param name="command">The command.</param>
+            <value>
+            The session.
+            </value>
         </member>
-        <member name="P:SuperSocket.SocketBase.CommandExecutingContext.Session">
+        <member name="P:SuperSocket.SocketBase.ICommandExecutingContext.Request">
             <summary>
-            Gets the session.
+            Gets the request which is being processed.
             </summary>
+            <value>
+            The request.
+            </value>
         </member>
-        <member name="P:SuperSocket.SocketBase.CommandExecutingContext.Request">
+        <member name="P:SuperSocket.SocketBase.ICommandExecutingContext.CurrentCommand">
             <summary>
-            Gets the request info.
+            Gets the current command which is being executed.
             </summary>
+            <value>
+            The current command.
+            </value>
         </member>
-        <member name="P:SuperSocket.SocketBase.CommandExecutingContext.CurrentCommand">
+        <member name="P:SuperSocket.SocketBase.ICommandExecutingContext.Exception">
             <summary>
-            Gets the current command.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.CommandExecutingContext.Exception">
-            <summary>
-            Gets the exception.
+            Gets the exception which was thrown in the command execution.
             </summary>
             <value>
             The exception.
             </value>
         </member>
-        <member name="P:SuperSocket.SocketBase.CommandExecutingContext.ExceptionHandled">
+        <member name="P:SuperSocket.SocketBase.ICommandExecutingContext.ExceptionHandled">
             <summary>
             Gets a value indicating whether [exception handled].
             </summary>
@@ -944,9 +967,66 @@
               <c>true</c> if [exception handled]; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:SuperSocket.SocketBase.CommandExecutingContext.Cancel">
+        <member name="P:SuperSocket.SocketBase.ICommandExecutingContext.Cancel">
             <summary>
-            Gets or sets a value indicating whether this command executing is cancelled.
+            Gets or sets a value indicating whether the command exeuction is cancelled.
+            </summary>
+            <value>
+              <c>true</c> if cancel; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IThreadExecutingContext">
+            <summary>
+            The interface for thread execution context
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IThreadExecutingContext.Increment(System.Int32)">
+            <summary>
+            Increments the queued request count.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IThreadExecutingContext.Decrement(System.Int32)">
+            <summary>
+            Decrements the queued request count.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IThreadExecutingContext.PreferedThreadId">
+            <summary>
+            Gets or sets the prefered thread identifier.
+            </summary>
+            <value>
+            The prefered thread identifier.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.RequestExecutingContext`2.CurrentCommand">
+            <summary>
+            Gets the current command which is being executed.
+            </summary>
+            <value>
+            The current command.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.RequestExecutingContext`2.Exception">
+            <summary>
+            Gets the exception which was thrown in the command execution.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.RequestExecutingContext`2.ExceptionHandled">
+            <summary>
+            Gets a value indicating whether [exception handled].
+            </summary>
+            <value>
+              <c>true</c> if [exception handled]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.RequestExecutingContext`2.Cancel">
+            <summary>
+            Gets or sets a value indicating whether the command exeuction is cancelled.
             </summary>
             <value>
               <c>true</c> if cancel; otherwise, <c>false</c>.
@@ -3570,13 +3650,13 @@
             Command filter attribute
             </summary>
         </member>
-        <member name="M:SuperSocket.SocketBase.Metadata.CommandFilterAttribute.OnCommandExecuting(SuperSocket.SocketBase.CommandExecutingContext)">
+        <member name="M:SuperSocket.SocketBase.Metadata.CommandFilterAttribute.OnCommandExecuting(SuperSocket.SocketBase.ICommandExecutingContext)">
             <summary>
             Called when [command executing].
             </summary>
             <param name="commandContext">The command context.</param>
         </member>
-        <member name="M:SuperSocket.SocketBase.Metadata.CommandFilterAttribute.OnCommandExecuted(SuperSocket.SocketBase.CommandExecutingContext)">
+        <member name="M:SuperSocket.SocketBase.Metadata.CommandFilterAttribute.OnCommandExecuted(SuperSocket.SocketBase.ICommandExecutingContext)">
             <summary>
             Called when [command executed].
             </summary>

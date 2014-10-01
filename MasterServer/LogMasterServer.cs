@@ -57,10 +57,20 @@ namespace LogMaster4Net.MasterServer
             {
                 var loggingData = loggings[i];
 
+                ILog log;
+
                 if (string.IsNullOrEmpty(loggingData.ApplicationName))
-                    LogFactory.GetLog(loggingData.LoggerName).Log(loggingData);
+                    log = LogFactory.GetLog(loggingData.LoggerName);
                 else
-                    LogFactory.GetLog(loggingData.ApplicationName, loggingData.LoggerName).Log(loggingData);
+                    log = LogFactory.GetLog(loggingData.ApplicationName, loggingData.LoggerName);
+
+                if(log == null)
+                {
+                    Logger.ErrorFormat("Failed to find a logger, LogAppName:[{0}], LoggerName: [{1}].", loggingData.ApplicationName, loggingData.LoggerName);
+                    continue;
+                }
+
+                log.Log(loggingData);
             }
         }
     }

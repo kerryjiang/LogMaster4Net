@@ -1,0 +1,53 @@
+﻿<log4net:event logger="PostEngineLog" timestamp="2014-09-22T08:12:18.4488948-07:00" level="ERROR" thread="14" domain="CraigslistAdChecker.exe" username="CARGIGI\craigslistposting">
+  <log4net:message>Update/delete post failed. PostID: 4642658216, AgentIP: 64.79.160.42, Account: tolfpxcgc@pulaslindustriesian.com.</log4net:message>
+  <log4net:properties>
+    <log4net:data name="LogAppName" value="CraigslistAdUpdater" />
+    <log4net:data name="log4net:HostName" value="Task1" />
+  </log4net:properties>
+  <log4net:exception>
+    <![CDATA[System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 64.209.134.7:80
+   at System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Int32 timeout, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at RainCoder.EA.Common.Web.ASMXClient.Intercept(IInvocation invocation)
+   at RainCoder.EA.Proxy.InvocationImpl.Invoke(Object newTarget)
+   at __wrapper_29.GetPageHtml_@!(HttpClient , String )
+   at RainCoder.EA.Common.Web.RemoteHttpClient.RainCoder.EA.Common.Web.IHttpClient.GetPageHtml(String url)
+   at (Object , Object[] )
+   at RainCoder.EA.Proxy.InvocationImpl.Invoke(Object newTarget)
+   at RainCoder.AutoCRM.Service.ServiceImpl.AutoCRM.PostServiceImpl.LogForHttpClient(IInvocation invocation, Int32 postLogID, String successStatus) in c:\Cargigi\Projects\AutoCRM\RainCoder.AutoCRM.Service\ServiceImpl\Post\PostServiceImpl.cs:line 1759
+   at (Object , Object[] )
+   at RainCoder.EA.Proxy.InvocationImpl.Invoke(Object newTarget)
+   at RainCoder.EA.DataAccess.TransactionInterceptor.RainCoder.EA.Proxy.IInterceptor.Intercept(IInvocation invocation)
+   at RainCoder.EA.Proxy.InvocationImpl.Invoke(Object newTarget)
+   at __wrapper_24.LogForHttpClient_@!(IInvocation , Int32 , String )
+   at RainCoder.AutoCRM.Service.ServiceImpl.AutoCRM.PosterService.__Intercept(IInvocation invocation, String status) in c:\Cargigi\Projects\AutoCRM\RainCoder.AutoCRM.Service\ServiceImpl\Post\PosterService.cs:line 397
+   at RainCoder.AutoCRM.Service.ServiceImpl.AutoCRM.PosterService.Intercept(IInvocation invocation) in c:\Cargigi\Projects\AutoCRM\RainCoder.AutoCRM.Service\ServiceImpl\Post\PosterService.cs:line 334
+   at RainCoder.EA.Proxy.InvocationImpl.Invoke(Object newTarget)
+   at __wrapper_30.GetPageHtml_@!(String )
+   at RainCoder.AutoCRM.PostEngine.HttpPostEngine.GetPageHtml(String url) in c:\Cargigi\Projects\AutoCRM\AutoCRMPost\PostEngine\Poster.cs:line 215
+   at RainCoder.AutoCRM.PostEngine.Craigslist.SignIn(String userEmail, String password, String cookie, String& strHtml) in c:\Cargigi\Projects\AutoCRM\AutoCRMPost\PostEngine\Craigslist.cs:line 78
+   at RainCoder.AutoCRM.PostEngine.Craigslist.LoginToCraigslist(CraigslistItem post, String& html, PostResult result) in c:\Cargigi\Projects\AutoCRM\AutoCRMPost\PostEngine\Craigslist.cs:line 2386
+   at RainCoder.AutoCRM.PostEngine.Craigslist.UpdatePost(List`1 posts) in c:\Cargigi\Projects\AutoCRM\AutoCRMPost\PostEngine\Craigslist.cs:line 1808]]>
+  </log4net:exception>
+  <log4net:locationInfo class="RainCoder.EA.Common.RainCoderLogger" method="Error" file="" line="0" />
+</log4net:event>
+<log4net:event logger="LogMaster" timestamp="2014-09-19T20:52:40.3347898-07:00" level="INFO" thread="12640" domain="SuperSocket.SocketService.exe" username="KERRYINSPIRON\Kerry">
+  <log4net:message>Current Time: 09/19/2014 20:52:40</log4net:message>
+  <log4net:properties>
+    <log4net:data name="log4net:HostName" value="KerryInspiron" />
+    <log4net:data name="LogAppName" value="TestApp" />
+  </log4net:properties>
+  <log4net:locationInfo class="SuperSocket.SocketBase.Logging.Log4NetLog" method="InfoFormat" file="d:\WorkShop\SuperSocket\master\SocketBase\Logging\Log4NetLog.cs" line="329" />
+</log4net:event>
+<log4net:event logger="LogMaster" timestamp="2014-09-19T20:52:40.3347898-07:00" level="INFO" thread="12640" domain="SuperSocket.SocketService.exe" username="KERRYINSPIRON\Kerry">
+  <log4net:message>Current Time: 09/19/2014 20:52:42</log4net:message>
+  <log4net:properties>
+    <log4net:data name="log4net:HostName" value="KerryInspiron" />
+    <log4net:data name="LogAppName" value="TestApp" />
+  </log4net:properties>
+  <log4net:locationInfo class="SuperSocket.SocketBase.Logging.Log4NetLog" method="InfoFormat" file="d:\WorkShop\SuperSocket\master\SocketBase\Logging\Log4NetLog.cs" line="329" />
+</log4net:event>

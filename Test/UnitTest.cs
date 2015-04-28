@@ -28,7 +28,7 @@ namespace Test
         {
             ILoggingDeserializer deserializer = new Log4NetLoggingDeserializer();
             var logs = deserializer.Deserialize(File.ReadAllText(Path.Combine("Asserts", "ExceptionLog.xml")));
-            Assert.AreEqual(1, logs.Count);
+            Assert.AreEqual(3, logs.Count);
             Assert.IsNotNullOrEmpty(logs[0].ExceptionString);
         }
 
@@ -37,8 +37,8 @@ namespace Test
         {
             ILoggingDeserializer deserializer = new Log4NetLoggingDeserializer();
             var logs = deserializer.Deserialize(File.ReadAllText(Path.Combine("Asserts", "MultipleLog.xml")));
-            Assert.AreEqual(1, logs.Count);
-            Assert.IsNotNullOrEmpty(logs[0].ExceptionString);
+            Assert.AreEqual(2, logs.Count);
+            Assert.IsNotNullOrEmpty(logs[0].Message);
         }
     }
 }

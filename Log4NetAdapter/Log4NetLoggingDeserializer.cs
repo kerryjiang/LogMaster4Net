@@ -21,17 +21,18 @@ namespace LogMaster4Net.Log4NetAdapter
 
         static Log4NetLoggingDeserializer()
         {
-            m_AttrAssignersDict = new Dictionary<string, Action<LoggingData, XmlReader>>(StringComparer.OrdinalIgnoreCase);
-            
-            m_AttrAssignersDict.Add("logger", (l, r) => l.LoggerName = r.Value);
-            m_AttrAssignersDict.Add("domain", (l, r) => l.Domain = r.Value);
-            m_AttrAssignersDict.Add("username", (l, r) => l.UserName = r.Value);
-            m_AttrAssignersDict.Add("thread", (l, r) => l.ThreadName = r.Value);
-            m_AttrAssignersDict.Add("level", (l, r) => l.Level = r.Value);
-            m_AttrAssignersDict.Add("timestamp", (l, r) => l.TimeStamp = DateTime.Parse(r.Value));
-            m_AttrAssignersDict.Add("message", (l, r) => l.Message = r.ReadElementContentAsString());
-            m_AttrAssignersDict.Add("properties", (l, r) => ReadProperties(l, r));
-            m_AttrAssignersDict.Add("exception", (l, r) => ReadException(l, r));
+            m_AttrAssignersDict = new Dictionary<string, Action<LoggingData, XmlReader>>(StringComparer.OrdinalIgnoreCase)
+            {
+                {"logger", (l, r) => l.LoggerName = r.Value},
+                {"domain", (l, r) => l.Domain = r.Value},
+                {"username", (l, r) => l.UserName = r.Value},
+                {"thread", (l, r) => l.ThreadName = r.Value},
+                {"level", (l, r) => l.Level = r.Value},
+                {"timestamp", (l, r) => l.TimeStamp = DateTime.Parse(r.Value)},
+                {"message", (l, r) => l.Message = r.ReadElementContentAsString()},
+                {"properties", ReadProperties},
+                {"exception", ReadException}
+            };
 
             NameTable nt = new NameTable();
             m_XmlNamespaceManager = new XmlNamespaceManager(nt);
@@ -84,8 +85,10 @@ namespace LogMaster4Net.Log4NetAdapter
             var logs = new List<LoggingData>();
 
             var context = new XmlParserContext(null, m_XmlNamespaceManager, null, XmlSpace.None);
-            var xmlReader = new XmlTextReader(log, XmlNodeType.Element, context);
-            xmlReader.WhitespaceHandling = WhitespaceHandling.None;
+            var xmlReader = new XmlTextReader(log, XmlNodeType.Element, context)
+            {
+                WhitespaceHandling = WhitespaceHandling.None
+            };
 
             xmlReader.Read();
 

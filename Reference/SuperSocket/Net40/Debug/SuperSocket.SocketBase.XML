@@ -25,6 +25,911 @@
             The current server.
             </value>
         </member>
+        <member name="T:SuperSocket.SocketBase.AppServer`3">
+            <summary>
+            AppServer base class
+            </summary>
+            <typeparam name="TAppSession">The type of the app session.</typeparam>
+            <typeparam name="TPackageInfo">The type of the request info.</typeparam>
+            <typeparam name="TKey">The type of the package key.</typeparam>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IAppServer`2">
+            <summary>
+            The interface for AppServer
+            </summary>
+            <typeparam name="TAppSession">The type of the app session.</typeparam>
+            <typeparam name="TPackageInfo">The type of the request info.</typeparam>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IAppServer`1">
+            <summary>
+            The interface for AppServer
+            </summary>
+            <typeparam name="TAppSession">The type of the app session.</typeparam>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IAppServer">
+            <summary>
+            The interface for AppServer
+            </summary>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IWorkItem">
+            <summary>
+            An item can be started and stopped
+            </summary>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IWorkItemBase">
+            <summary>
+            An item can be started and stopped
+            </summary>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IStatusInfoSource">
+            <summary>
+            StatusInfo source interface
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IStatusInfoSource.CollectServerStatus(SuperSocket.SocketBase.StatusInfoCollection)">
+            <summary>
+            Collects the bootstrap status.
+            </summary>
+            <param name="bootstrapStatus">The bootstrap status.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IServerMetadataProvider">
+            <summary>
+            Server metadata provder interface
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IServerMetadataProvider.GetAppServerMetadata">
+            <summary>
+            Gets the application server metadata.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SuperSocket.SocketBase.ISystemEndPoint">
+            <summary>
+            The interface for endpoint who can send/receive system message with each other
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.ISystemEndPoint.TransferSystemMessage(System.String,System.Object)">
+            <summary>
+            Transfers the system message.
+            </summary>
+            <param name="messageType">Type of the message.</param>
+            <param name="messageData">The message data.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IWorkItemBase.Start">
+            <summary>
+            Starts this server instance.
+            </summary>
+            <returns>return true if start successfull, else false</returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IWorkItemBase.ReportPotentialConfigChange(SuperSocket.SocketBase.Config.IServerConfig)">
+            <summary>
+            Reports the potential configuration change.
+            </summary>
+            <param name="config">The server config which may be changed.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IWorkItemBase.Stop">
+            <summary>
+            Stops this server instance.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IWorkItemBase.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IWorkItemBase.SessionCount">
+            <summary>
+            Gets the total session count.
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IWorkItem.Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig)">
+            <summary>
+            Setups with the specified root config.
+            </summary>
+            <param name="bootstrap">The bootstrap.</param>
+            <param name="config">The socket server instance config.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IWorkItem.State">
+            <summary>
+            Gets the current state of the work item.
+            </summary>
+            <value>
+            The state.
+            </value>
+        </member>
+        <member name="T:SuperSocket.SocketBase.ILoggerProvider">
+            <summary>
+            The interface for who provides logger
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.ILoggerProvider.Logger">
+            <summary>
+            Gets the logger assosiated with this object.
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IAppServer.CreateAppSession(SuperSocket.SocketBase.ISocketSession)">
+            <summary>
+            Creates the app session.
+            </summary>
+            <param name="socketSession">The socket session.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IAppServer.RegisterSession(SuperSocket.SocketBase.IAppSession)">
+            <summary>
+            Registers the new created app session into the appserver's session container.
+            </summary>
+            <param name="session">The session.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IAppServer.GetSessionByID(System.String)">
+            <summary>
+            Gets the app session by ID.
+            </summary>
+            <param name="sessionID">The session ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IAppServer.ResetSessionSecurity(SuperSocket.SocketBase.IAppSession,System.Security.Authentication.SslProtocols)">
+            <summary>
+            Resets the session's security protocol.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="security">The security protocol.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IAppServer.GetService``1">
+            <summary>
+            Gets the service object of the specified type.
+            </summary>
+            <typeparam name="T">the type of service object to get</typeparam>
+            <returns>A service object of type T</returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IAppServer.RegisterService``1(``0)">
+            <summary>
+            Registers the service instance.
+            </summary>
+            <typeparam name="T">the service instance's type</typeparam>
+            <param name="serviceInstance">The service instance.</param>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IAppServer.StartedTime">
+            <summary>
+            Gets the started time.
+            </summary>
+            <value>
+            The started time.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IAppServer.Listeners">
+            <summary>
+            Gets or sets the listeners.
+            </summary>
+            <value>
+            The listeners.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IAppServer.ReceiveFilterFactory">
+            <summary>
+            Gets the Receive filter factory.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IAppServer.Config">
+            <summary>
+            Gets the server's config.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IAppServer.Certificate">
+            <summary>
+            Gets the certificate of current server.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IAppServer.BasicSecurity">
+            <summary>
+            Gets the transfer layer security protocol.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IAppServer.LogFactory">
+            <summary>
+            Gets the log factory.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.IAppServer.BufferManager">
+            <summary>
+            Gets the buffer manager.
+            </summary>
+            <value>
+            The buffer manager.
+            </value>
+        </member>
+        <member name="E:SuperSocket.SocketBase.IAppServer.NewRequestReceived">
+            <summary>
+            Occurs when [new request received].
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IAppServer`1.GetSessions(System.Func{`0,System.Boolean})">
+            <summary>
+            Gets the matched sessions from sessions snapshot.
+            </summary>
+            <param name="critera">The prediction critera.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IAppServer`1.GetAllSessions">
+            <summary>
+            Gets all sessions in sessions snapshot.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:SuperSocket.SocketBase.IAppServer`1.NewSessionConnected">
+            <summary>
+            Gets/sets the new session connected event handler.
+            </summary>
+        </member>
+        <member name="E:SuperSocket.SocketBase.IAppServer`1.SessionClosed">
+            <summary>
+            Gets/sets the session closed event handler.
+            </summary>
+        </member>
+        <member name="E:SuperSocket.SocketBase.IAppServer`2.NewRequestReceived">
+            <summary>
+            Occurs when [request comming].
+            </summary>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IRawDataProcessor`1">
+            <summary>
+            The raw data processor
+            </summary>
+            <typeparam name="TAppSession">The type of the app session.</typeparam>
+        </member>
+        <member name="E:SuperSocket.SocketBase.IRawDataProcessor`1.RawDataReceived">
+            <summary>
+            Gets or sets the raw binary data received event handler.
+            TAppSession: session
+            byte[]: receive buffer
+            int: receive buffer offset
+            int: receive lenght
+            bool: whether process the received data further
+            </summary>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IRequestHandler`1">
+            <summary>
+            The interface for handler of session request
+            </summary>
+            <typeparam name="TPackageInfo">The type of the request info.</typeparam>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IRequestHandler`1.ExecuteCommand(SuperSocket.SocketBase.IAppSession,`0)">
+            <summary>
+            Executes the command.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="requestInfo">The request info.</param>
+        </member>
+        <member name="T:SuperSocket.SocketBase.ISocketServerAccessor">
+            <summary>
+            SocketServer Accessor interface
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.ISocketServerAccessor.SocketServer">
+            <summary>
+            Gets the socket server.
+            </summary>
+            <value>
+            The socket server.
+            </value>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IRemoteCertificateValidator">
+            <summary>
+            The basic interface for RemoteCertificateValidator
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IRemoteCertificateValidator.Validate(SuperSocket.SocketBase.IAppSession,System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Validates the remote certificate
+            </summary>
+            <param name="session">The session.</param>
+            <param name="sender">The sender.</param>
+            <param name="certificate">The certificate.</param>
+            <param name="chain">The chain.</param>
+            <param name="sslPolicyErrors">The SSL policy errors.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SuperSocket.SocketBase.IActiveConnector">
+            <summary>
+            The inerface to connect the remote endpoint actively
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.IActiveConnector.ActiveConnect(System.Net.EndPoint)">
+            <summary>
+            Connect the target endpoint actively.
+            </summary>
+            <param name="targetEndPoint">The target end point.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SuperSocket.SocketBase.ISessionRegister">
+            <summary>
+            Session register interface
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.ISessionRegister.RegisterSession(SuperSocket.SocketBase.IAppSession)">
+            <summary>
+            Tries the register session.
+            </summary>
+            <param name="session">The session.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.RegisterConfigHandler``1(SuperSocket.SocketBase.Config.IServerConfig,System.String,System.Func{``0,System.Boolean})">
+            <summary>
+            Registers the configuration option value handler, it is used for reading configuration value and reload it after the configuration is changed;
+            </summary>
+            <typeparam name="TConfigOption">The type of the configuration option.</typeparam>
+            <param name="config">The server configuration.</param>
+            <param name="name">The changed config option's name.</param>
+            <param name="handler">The handler.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.RegisterConfigHandler(SuperSocket.SocketBase.Config.IServerConfig,System.String,System.Func{System.String,System.Boolean})">
+            <summary>
+            Registers the configuration option value handler, it is used for reading configuration value and reload it after the configuration is changed;
+            </summary>
+            <param name="config">The server configuration.</param>
+            <param name="name">The changed config option name.</param>
+            <param name="handler">The handler.</param>
+        </member>
+        <member name="F:SuperSocket.SocketBase.AppServer`3.NullAppSession">
+            <summary>
+            Null appSession instance
+            </summary>
+        </member>
+        <member name="F:SuperSocket.SocketBase.AppServer`3.m_StateCode">
+            <summary>
+            the current state's code
+            </summary>
+        </member>
+        <member name="F:SuperSocket.SocketBase.AppServer`3.m_RequestExecutingContextPool">
+            <summary>
+            The object pool for request executing context
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.AppServer`2"/> class.
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.#ctor(SuperSocket.SocketBase.Protocol.IReceiveFilterFactory{`1})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.AppServer`2"/> class.
+            </summary>
+            <param name="receiveFilterFactory">The Receive filter factory.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetCommandFilterAttributes(System.Type)">
+            <summary>
+            Gets the filter attributes.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupCommands(System.Collections.Generic.Dictionary{System.String,SuperSocket.SocketBase.Command.ICommand{`0,`1}})">
+            <summary>
+            Setups the command into command dictionary
+            </summary>
+            <param name="discoveredCommands">The discovered commands.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetCompositionContainer(SuperSocket.SocketBase.Config.IServerConfig)">
+            <summary>
+            Gets the composition container.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(SuperSocket.SocketBase.Config.IRootConfig,SuperSocket.SocketBase.Config.IServerConfig)">
+            <summary>
+            Setups with the specified configurations.
+            </summary>
+            <param name="rootConfig">The root configuration.</param>
+            <param name="config">The server configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(SuperSocket.SocketBase.Config.IRootConfig,SuperSocket.SocketBase.Config.IServerConfig,System.ComponentModel.Composition.Hosting.ExportProvider)">
+            <summary>
+            Setups with the specified configurations.
+            </summary>
+            <param name="rootConfig">The root configuration.</param>
+            <param name="config">The configuration.</param>
+            <param name="exportProvier">The composition export provier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.RegisterCompositeTarget(System.Collections.Generic.IList{SuperSocket.SocketBase.ICompositeTarget})">
+            <summary>
+            Registers the composite targets.
+            </summary>
+            <param name="targets">The targets.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(System.Int32)">
+            <summary>
+            Setups with the specified port.
+            </summary>
+            <param name="port">The port.</param>
+            <returns>return setup result</returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Protocol.IReceiveFilterFactory{`1},AnyLog.ILogFactory,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IConnectionFilter},System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.Command.ICommandLoader{SuperSocket.SocketBase.Command.ICommand{`0,`1}}})">
+            <summary>
+            Setups with the specified config.
+            </summary>
+            <param name="config">The server config.</param>
+            <param name="receiveFilterFactory">The receive filter factory.</param>
+            <param name="logFactory">The log factory.</param>
+            <param name="connectionFilters">The connection filters.</param>
+            <param name="commandLoaders">The command loaders.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(SuperSocket.SocketBase.Config.IRootConfig,SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Protocol.IReceiveFilterFactory{`1},AnyLog.ILogFactory,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IConnectionFilter},System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.Command.ICommandLoader{SuperSocket.SocketBase.Command.ICommand{`0,`1}}})">
+            <summary>
+            Setups the specified root config, this method used for programming setup
+            </summary>
+            <param name="rootConfig">The root config.</param>
+            <param name="config">The server config.</param>
+            <param name="receiveFilterFactory">The Receive filter factory.</param>
+            <param name="logFactory">The log factory.</param>
+            <param name="connectionFilters">The connection filters.</param>
+            <param name="commandLoaders">The command loaders.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(System.String,System.Int32,SuperSocket.SocketBase.Protocol.IReceiveFilterFactory{`1},AnyLog.ILogFactory,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IConnectionFilter},System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.Command.ICommandLoader{SuperSocket.SocketBase.Command.ICommand{`0,`1}}})">
+            <summary>
+            Setups with the specified ip and port.
+            </summary>
+            <param name="ip">The ip.</param>
+            <param name="port">The port.</param>
+            <param name="receiveFilterFactory">The Receive filter factory.</param>
+            <param name="logFactory">The log factory.</param>
+            <param name="connectionFilters">The connection filters.</param>
+            <param name="commandLoaders">The command loaders.</param>
+            <returns>return setup result</returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IWorkItem#Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig)">
+            <summary>
+            Setups the specified root config.
+            </summary>
+            <param name="bootstrap">The bootstrap.</param>
+            <param name="config">The socket server instance config.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            bootstrap
+            or
+            factories
+            </exception>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupCommandLoaders(System.Collections.Generic.List{SuperSocket.SocketBase.Command.ICommandLoader{SuperSocket.SocketBase.Command.ICommand{`0,`1}}})">
+            <summary>
+            Setups the command loaders.
+            </summary>
+            <param name="commandLoaders">The command loaders.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.CreateLogger(System.String)">
+            <summary>
+            Creates the logger for the AppServer.
+            </summary>
+            <param name="loggerName">Name of the logger.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupSecurity(SuperSocket.SocketBase.Config.IServerConfig)">
+            <summary>
+            Setups the security option of socket communications.
+            </summary>
+            <param name="config">The config of the server instance.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetCertificate(SuperSocket.SocketBase.Config.ICertificateConfig)">
+            <summary>
+            Gets the certificate from server configuguration.
+            </summary>
+            <param name="certificate">The certificate config.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.ValidateClientCertificate(`0,System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Validates the client certificate. This method is only used if the certificate configuration attribute "clientCertificateRequired" is true.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="sender">The sender.</param>
+            <param name="certificate">The certificate.</param>
+            <param name="chain">The chain.</param>
+            <param name="sslPolicyErrors">The SSL policy errors.</param>
+            <returns>return the validation result</returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupSocketServer">
+            <summary>
+            Setups the socket server.instance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupListeners(SuperSocket.SocketBase.Config.IServerConfig)">
+            <summary>
+            Setups the listeners base on server configuration
+            </summary>
+            <param name="config">The config.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.Start">
+            <summary>
+            Starts this server instance.
+            </summary>
+            <returns>
+            return true if start successfull, else false
+            </returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.OnStarted">
+            <summary>
+            Called when [started].
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.OnStopped">
+            <summary>
+            Called when [stopped].
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.Stop">
+            <summary>
+            Stops this server instance.
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetCommandByName(`2)">
+            <summary>
+            Gets command by command name.
+            </summary>
+            <param name="commandName">Name of the command.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.OnRawDataReceived(SuperSocket.SocketBase.IAppSession,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Called when [raw data received].
+            </summary>
+            <param name="session">The session.</param>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="length">The length.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.ExecuteCommand(SuperSocket.SocketBase.IRequestExecutingContext{`0,`1})">
+            <summary>
+            Executes the command.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.ExecuteCommand(SuperSocket.SocketBase.IAppSession,`1)">
+            <summary>
+            Executes the command for the session.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="requestInfo">The request info.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IRequestHandler{TPackageInfo}#ExecuteCommand(SuperSocket.SocketBase.IAppSession,`1)">
+            <summary>
+            Executes the command.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="requestInfo">The request info.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.ExecuteConnectionFilters(System.Net.IPEndPoint)">
+            <summary>
+            Executes the connection filters.
+            </summary>
+            <param name="remoteAddress">The remote address.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#CreateAppSession(SuperSocket.SocketBase.ISocketSession)">
+            <summary>
+            Creates the app session.
+            </summary>
+            <param name="socketSession">The socket session.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.CreateAppSession(SuperSocket.SocketBase.ISocketSession)">
+            <summary>
+            create a new TAppSession instance, you can override it to create the session instance in your own way
+            </summary>
+            <param name="socketSession">the socket session.</param>
+            <returns>the new created session instance</returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#RegisterSession(SuperSocket.SocketBase.IAppSession)">
+            <summary>
+            Registers the new created app session into the appserver's session container.
+            </summary>
+            <param name="session">The session.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.OnNewSessionConnected(`0)">
+            <summary>
+            Called when [new session connected].
+            </summary>
+            <param name="session">The session.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.ResetSessionSecurity(SuperSocket.SocketBase.IAppSession,System.Security.Authentication.SslProtocols)">
+            <summary>
+            Resets the session's security protocol.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="security">The security protocol.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.OnSocketSessionClosed(SuperSocket.SocketBase.ISocketSession,SuperSocket.SocketBase.CloseReason)">
+            <summary>
+            Called when [socket session closed].
+            </summary>
+            <param name="session">The socket session.</param>
+            <param name="reason">The reason.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.OnSessionClosed(`0,SuperSocket.SocketBase.CloseReason)">
+            <summary>
+            Called when [session closed].
+            </summary>
+            <param name="session">The appSession.</param>
+            <param name="reason">The reason.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.RegisterSession(System.String,`0)">
+            <summary>
+            Registers the session into session container.
+            </summary>
+            <param name="sessionID">The session ID.</param>
+            <param name="appSession">The app session.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetSessionByID(System.String)">
+            <summary>
+            Gets the app session by ID.
+            </summary>
+            <param name="sessionID">The session ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#GetSessionByID(System.String)">
+            <summary>
+            Gets the app session by ID.
+            </summary>
+            <param name="sessionID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.ClearIdleSession(System.Object)">
+            <summary>
+            Clears the idle session.
+            </summary>
+            <param name="state">The state.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetSessions(System.Func{`0,System.Boolean})">
+            <summary>
+            Gets the matched sessions from sessions snapshot.
+            </summary>
+            <param name="critera">The prediction critera.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetAllSessions">
+            <summary>
+            Gets all sessions in sessions snapshot.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetFilePath(System.String)">
+            <summary>
+            Gets the physical file path by the relative file path,
+            search both in the appserver's root and in the supersocket root dir if the isolation level has been set other than 'None'.
+            </summary>
+            <param name="relativeFilePath">The relative file path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IActiveConnector#ActiveConnect(System.Net.EndPoint)">
+            <summary>
+            Connect the remote endpoint actively.
+            </summary>
+            <param name="targetEndPoint">The target end point.</param>
+            <returns></returns>
+            <exception cref="T:System.Exception">This server cannot support active connect.</exception>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#ISystemEndPoint#TransferSystemMessage(System.String,System.Object)">
+            <summary>
+            Transfers the system message
+            </summary>
+            <param name="messageType">Type of the message.</param>
+            <param name="messageData">The message data.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.OnSystemMessageReceived(System.String,System.Object)">
+            <summary>
+            Called when [system message received].
+            </summary>
+            <param name="messageType">Type of the message.</param>
+            <param name="messageData">The message data.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.UpdateServerStatus(SuperSocket.SocketBase.StatusInfoCollection)">
+            <summary>
+            Updates the summary of the server.
+            </summary>
+            <param name="serverStatus">The server status.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.OnServerStatusCollected(SuperSocket.SocketBase.StatusInfoCollection,SuperSocket.SocketBase.StatusInfoCollection)">
+            <summary>
+            Called when [server status collected].
+            </summary>
+            <param name="bootstrapStatus">The bootstrapStatus status.</param>
+            <param name="serverStatus">The server status.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetService(System.Type)">
+            <summary>
+            Gets the service object of the specified type.
+            </summary>
+            <param name="serviceType">An object that specifies the type of service object to get.</param>
+            <returns>
+            A service object of type <paramref name="serviceType" />.-or- null if there is no service object of type <paramref name="serviceType" />.
+            </returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.GetService``1">
+            <summary>
+            Gets the service object of the specified type.
+            </summary>
+            <typeparam name="T">the type of service object to get</typeparam>
+            <returns>A service object of type T</returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.RegisterService``1(``0)">
+            <summary>
+            Registers the service object with the specific type.
+            </summary>
+            <typeparam name="T">the type of service object to get</typeparam>
+            <param name="serviceInstance">The service instance.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.AppServer`3.Dispose">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.Config">
+            <summary>
+            Gets the server's config.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.State">
+            <summary>
+            Gets the current state of the work item.
+            </summary>
+            <value>
+            The state.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.Certificate">
+            <summary>
+            Gets the certificate of current server.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#BufferManager">
+            <summary>
+            Gets the buffer manager.
+            </summary>
+            <value>
+            The buffer manager.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.ReceiveFilterFactory">
+            <summary>
+            Gets or sets the receive filter factory.
+            </summary>
+            <value>
+            The receive filter factory.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#ReceiveFilterFactory">
+            <summary>
+            Gets the Receive filter factory.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.BasicSecurity">
+            <summary>
+            Gets the basic transfer layer security protocol.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.RootConfig">
+            <summary>
+            Gets the root config.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.Logger">
+            <summary>
+            Gets the logger assosiated with this object.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.Bootstrap">
+            <summary>
+            Gets the bootstrap of this appServer instance.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.TotalHandledRequests">
+            <summary>
+            Gets the total handled requests number.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.Listeners">
+            <summary>
+            Gets or sets the listeners inforamtion.
+            </summary>
+            <value>
+            The listeners.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.StartedTime">
+            <summary>
+            Gets the started time of this server instance.
+            </summary>
+            <value>
+            The started time.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.LogFactory">
+            <summary>
+            Gets or sets the log factory.
+            </summary>
+            <value>
+            The log factory.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.TextEncoding">
+            <summary>
+            Gets the default text encoding.
+            </summary>
+            <value>
+            The text encoding.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.CompositionContainer">
+            <summary>
+            Gets the composition container.
+            </summary>
+            <value>
+            The composition container.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.Name">
+            <summary>
+            Gets the name of the server instance.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#ISocketServerAccessor#SocketServer">
+            <summary>
+            Gets the socket server.
+            </summary>
+            <value>
+            The socket server.
+            </value>
+        </member>
+        <member name="E:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IRawDataProcessor{TAppSession}#RawDataReceived">
+            <summary>
+            Gets or sets the raw binary data received event handler.
+            TAppSession: session
+            byte[]: receive buffer
+            int: receive buffer offset
+            int: receive lenght
+            bool: whether process the received data further
+            </summary>
+        </member>
+        <member name="E:SuperSocket.SocketBase.AppServer`3.NewRequestReceived">
+            <summary>
+            Occurs when a full request item received.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.ConnectionFilters">
+            <summary>
+            Gets or sets the server's connection filter
+            </summary>
+            <value>
+            The server's connection filters
+            </value>
+        </member>
+        <member name="E:SuperSocket.SocketBase.AppServer`3.NewSessionConnected">
+            <summary>
+            The action which will be executed after a new session connect
+            </summary>
+        </member>
+        <member name="E:SuperSocket.SocketBase.AppServer`3.SessionClosed">
+            <summary>
+            Gets/sets the session closed event handler.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketBase.AppServer`3.SessionCount">
+            <summary>
+            Gets the total session count.
+            </summary>
+        </member>
         <member name="T:SuperSocket.SocketBase.Async">
             <summary>
             Async extension class
@@ -250,6 +1155,236 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SuperSocket.SocketBase.ICompositeTarget">
+            <summary>
+            The interface for the composite target
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.ICompositeTarget.Resolve(SuperSocket.SocketBase.IAppServer,System.ComponentModel.Composition.Hosting.ExportProvider)">
+            <summary>
+            Resolves the specified application server.
+            </summary>
+            <param name="appServer">The application server.</param>
+            <param name="exportProvider">The export provider.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SuperSocket.SocketBase.CompositeTargets.CompositeTargetBase`1">
+            <summary>
+            the basic class of composite target
+            </summary>
+            <typeparam name="TTarget">The type of the target.</typeparam>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.CompositeTargetBase`1.#ctor(System.Action{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.CompositeTargets.CompositeTargetBase`1"/> class.
+            </summary>
+            <param name="callback">The callback which will be invoked after the resolving is finished successfully.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.CompositeTargetBase`1.Resolve(SuperSocket.SocketBase.IAppServer,System.ComponentModel.Composition.Hosting.ExportProvider)">
+            <summary>
+            Resolves the specified application server.
+            </summary>
+            <param name="appServer">The application server.</param>
+            <param name="exportProvider">The export provider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.CompositeTargetBase`1.TryResolve(SuperSocket.SocketBase.IAppServer,System.ComponentModel.Composition.Hosting.ExportProvider,`0@)">
+            <summary>
+            Tries to resolve.
+            </summary>
+            <param name="appServer">The application server.</param>
+            <param name="exportProvider">The export provider.</param>
+            <param name="result">The resolving result.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTarget`1">
+            <summary>
+            the basic class for the multiple elements result composite target
+            </summary>
+            <typeparam name="TTarget">The type of the target.</typeparam>
+        </member>
+        <member name="T:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTarget`2">
+            <summary>
+            the basic class for the multiple elements result composite target
+            </summary>
+            <typeparam name="TTarget">The type of the target.</typeparam>
+            <typeparam name="TMetadata">The type of the metadata.</typeparam>
+        </member>
+        <member name="T:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTargetCore`2">
+            <summary>
+            The basic class for the multiple elements result composite target
+            </summary>
+            <typeparam name="TTarget">The type of the target.</typeparam>
+            <typeparam name="TMetadata">The type of the metadata.</typeparam>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTargetCore`2.#ctor(System.Func{SuperSocket.SocketBase.Config.IServerConfig,System.String},System.Action{System.Collections.Generic.List{`0}},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTargetCore`2"/> class.
+            </summary>
+            <param name="configSelector">The configuration selector.</param>
+            <param name="callback">The callback which will be invoked after the resolving is finished successfully.</param>
+            <param name="required">if set to <c>true</c> [required], indicating whether this resolving result is required.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTargetCore`2.TryResolve(SuperSocket.SocketBase.IAppServer,System.ComponentModel.Composition.Hosting.ExportProvider,System.Collections.Generic.List{`0}@)">
+            <summary>
+            Tries to resolve.
+            </summary>
+            <param name="appServer">The application server.</param>
+            <param name="exportProvider">The export provider.</param>
+            <param name="result">The result.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTargetCore`2.MetadataNameEqual(`1,System.String)">
+            <summary>
+            Match the metadata by the name.
+            </summary>
+            <param name="metadata">The metadata.</param>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTargetCore`2.PrepareResult(`0,SuperSocket.SocketBase.IAppServer,`1)">
+            <summary>
+            Prepares the result before it is returned.
+            </summary>
+            <param name="result">The result.</param>
+            <param name="appServer">The application server.</param>
+            <param name="metadata">The metadata.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTargetCore`2.Required">
+            <summary>
+            Gets a value indicating whether this resolving result is required.
+            </summary>
+            <value>
+              <c>true</c> if required; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTargetCore`2.ConfigSelector">
+            <summary>
+            Gets the configuration selector.
+            </summary>
+            <value>
+            The configuration selector.
+            </value>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTarget`2.#ctor(System.Func{SuperSocket.SocketBase.Config.IServerConfig,System.String},System.Action{System.Collections.Generic.List{`0}},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTarget`2"/> class.
+            </summary>
+            <param name="configSelector">The configuration selector.</param>
+            <param name="callback">The callback which will be invoked after the resolving is finished successfully.</param>
+            <param name="required">if set to <c>true</c> [required], indicating whether this resolving result is required.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTarget`2.MetadataNameEqual(`1,System.String)">
+            <summary>
+            Match the metadata by the name.
+            </summary>
+            <param name="metadata">The metadata.</param>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTarget`1.#ctor(System.Func{SuperSocket.SocketBase.Config.IServerConfig,System.String},System.Action{System.Collections.Generic.List{`0}},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.CompositeTargets.MultipleResultCompositeTarget`1"/> class.
+            </summary>
+            <param name="configSelector">The configuration selector.</param>
+            <param name="callback">The callback which will be invoked after the resolving is finished successfully.</param>
+            <param name="required">if set to <c>true</c> [required], indicating whether this resolving result is required.</param>
+        </member>
+        <member name="T:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2">
+            <summary>
+            The basic class for the signle element result composite target
+            </summary>
+            <typeparam name="TTarget">The type of the target.</typeparam>
+            <typeparam name="TMetadata">The type of the metadata.</typeparam>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2.#ctor(System.Func{SuperSocket.SocketBase.Config.IServerConfig,System.String},System.Action{`0},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2"/> class.
+            </summary>
+            <param name="configSelector">The configuration selector.</param>
+            <param name="callback">The callback which will be invoked after the resolving is finished successfully.</param>
+            <param name="required">if set to <c>true</c> [required], indicating whether this resolving result is required.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2.TryResolve(SuperSocket.SocketBase.IAppServer,System.ComponentModel.Composition.Hosting.ExportProvider,`0@)">
+            <summary>
+            Tries to resolve.
+            </summary>
+            <param name="appServer">The application server.</param>
+            <param name="exportProvider">The export provider.</param>
+            <param name="result">The result.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2.MetadataNameEqual(`1,System.String)">
+            <summary>
+            Match the metadata by the name.
+            </summary>
+            <param name="metadata">The metadata.</param>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2.PrepareResult(`0,SuperSocket.SocketBase.IAppServer,`1)">
+            <summary>
+            Prepares the result before it is returned.
+            </summary>
+            <param name="result">The result.</param>
+            <param name="appServer">The application server.</param>
+            <param name="metadata">The metadata.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2.Required">
+            <summary>
+            Gets a value indicating whether this resolving result is required.
+            </summary>
+            <value>
+              <c>true</c> if required; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2.ConfigSelector">
+            <summary>
+            Gets the configuration selector.
+            </summary>
+            <value>
+            The configuration selector.
+            </value>
+        </member>
+        <member name="T:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTarget`1">
+            <summary>
+            The basic class for the signle element result composite target
+            </summary>
+            <typeparam name="TTarget">The type of the target.</typeparam>
+        </member>
+        <member name="T:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTarget`2">
+            <summary>
+            The basic class for the signle element result composite target
+            </summary>
+            <typeparam name="TTarget">The type of the target.</typeparam>
+            <typeparam name="TMetadata">The type of the metadata.</typeparam>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTarget`2.#ctor(System.Func{SuperSocket.SocketBase.Config.IServerConfig,System.String},System.Action{`0},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTarget`2"/> class.
+            </summary>
+            <param name="configSelector">The configuration selector.</param>
+            <param name="callback">The callback which will be invoked after the resolving is finished successfully.</param>
+            <param name="required">if set to <c>true</c> [required], indicating whether this resolving result is required.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTarget`2.MetadataNameEqual(`1,System.String)">
+            <summary>
+            Match the metadata by the name.
+            </summary>
+            <param name="metadata">The metadata.</param>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTarget`1.#ctor(System.Func{SuperSocket.SocketBase.Config.IServerConfig,System.String},System.Action{`0},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTarget`1"/> class.
+            </summary>
+            <param name="configSelector">The configuration selector.</param>
+            <param name="callback">The callback which will be invoked after the resolving is finished successfully.</param>
+            <param name="required">if set to <c>true</c> [required], indicating whether this resolving result is required.</param>
+        </member>
         <member name="T:SuperSocket.SocketBase.Config.BufferPoolConfig">
             <summary>
             Buffer pool configuration model class
@@ -304,6 +1439,11 @@
             The initial count.
             </value>
         </member>
+        <member name="T:SuperSocket.SocketBase.Config.HotUpdateAttribute">
+            <summary>
+            the attribute to mark which property of ServerConfig support hot update
+            </summary>
+        </member>
         <member name="T:SuperSocket.SocketBase.ISessionContainer`1">
             <summary>
             The basic interface for the session container
@@ -326,10 +1466,10 @@
         </member>
         <member name="M:SuperSocket.SocketBase.ISessionContainer`1.TryRegisterSession(`0)">
             <summary>
-            Tries to register the session session.
+            Tries the register session.
             </summary>
             <param name="session">The session.</param>
-            <returns>true, register successfully; false, the key already exists</returns>
+            <returns></returns>
         </member>
         <member name="M:SuperSocket.SocketBase.ISessionContainer`1.TryUnregisterSession(System.String)">
             <summary>
@@ -367,200 +1507,65 @@
             The connected session.
             </value>
         </member>
-        <member name="T:SuperSocket.SocketBase.IActiveConnector">
+        <member name="T:SuperSocket.SocketBase.INewSessionHandler">
             <summary>
-            The inerface to connect the remote endpoint actively
+            The new session handler interface
             </summary>
         </member>
-        <member name="M:SuperSocket.SocketBase.IActiveConnector.ActiveConnect(System.Net.EndPoint)">
+        <member name="M:SuperSocket.SocketBase.INewSessionHandler.Initialize(SuperSocket.SocketBase.ISessionRegister)">
             <summary>
-            Connect the target endpoint actively.
+            Initializes the specified session register.
             </summary>
-            <param name="targetEndPoint">The target end point.</param>
+            <param name="sessionRegister">The session register.</param>
+        </member>
+        <member name="M:SuperSocket.SocketBase.INewSessionHandler.Start">
+            <summary>
+            Starts this instance.
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.INewSessionHandler.Stop">
+            <summary>
+            Stops this instance.
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.INewSessionHandler.AcceptNewSession(SuperSocket.SocketBase.IAppSession)">
+            <summary>
+            Accepts the new session.
+            </summary>
+            <param name="session">The session.</param>
+        </member>
+        <member name="T:SuperSocket.SocketBase.Metadata.AppServerMetadata">
+            <summary>
+            AppServer's default metadata type
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.Metadata.AppServerMetadata.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Metadata.AppServerMetadata"/> class.
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketBase.Metadata.AppServerMetadata.GetAppServerMetadata(System.Type)">
+            <summary>
+            Gets the status info metadata from the server type.
+            </summary>
+            <param name="serverType">Type of the server.</param>
             <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="T:SuperSocket.SocketBase.IStatusInfoSource">
+        <member name="P:SuperSocket.SocketBase.Metadata.AppServerMetadata.StatusFields">
             <summary>
-            StatusInfo source interface
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IStatusInfoSource.GetServerStatusMetadata">
-            <summary>
-            Gets the server status metadata.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IStatusInfoSource.CollectServerStatus(SuperSocket.SocketBase.StatusInfoCollection)">
-            <summary>
-            Collects the bootstrap status.
-            </summary>
-            <param name="bootstrapStatus">The bootstrap status.</param>
-            <returns></returns>
-        </member>
-        <member name="T:SuperSocket.SocketBase.ISystemEndPoint">
-            <summary>
-            The interface for endpoint who can send/receive system message with each other
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.ISystemEndPoint.TransferSystemMessage(System.String,System.Object)">
-            <summary>
-            Transfers the system message.
-            </summary>
-            <param name="messageType">Type of the message.</param>
-            <param name="messageData">The message data.</param>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Logging.LocationInfo">
-            <summary>
-            location info
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.ClassName">
-            <summary>
-            Gets or sets the name of the class.
+            Gets/sets the status fields.
             </summary>
             <value>
-            The name of the class.
+            The status fields.
             </value>
         </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.FileName">
+        <member name="P:SuperSocket.SocketBase.Metadata.AppServerMetadata.IsServerManager">
             <summary>
-            Gets or sets the name of the file.
+            Gets a value indicating whether this instance is server manager.
             </summary>
             <value>
-            The name of the file.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.LineNumber">
-            <summary>
-            Gets or sets the line number.
-            </summary>
-            <value>
-            The line number.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.MethodName">
-            <summary>
-            Gets or sets the name of the method.
-            </summary>
-            <value>
-            The name of the method.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.FullInfo">
-            <summary>
-            Gets or sets the full information.
-            </summary>
-            <value>
-            The full information.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LocationInfo.StackFrames">
-            <summary>
-            Gets or sets the stack frames.
-            </summary>
-            <value>
-            The stack frames.
-            </value>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Logging.LoggingData">
-            <summary>
-            logging data
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.ApplicationName">
-            <summary>
-            Gets or sets the name of the application.
-            </summary>
-            <value>
-            The name of the application.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.LoggerName">
-            <summary>
-            Gets or sets the name of the logger.
-            </summary>
-            <value>
-            The name of the logger.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Level">
-            <summary>
-            Gets or sets the level.
-            </summary>
-            <value>
-            The level.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Message">
-            <summary>
-            Gets or sets the message.
-            </summary>
-            <value>
-            The message.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.ThreadName">
-            <summary>
-            Gets or sets the name of the thread.
-            </summary>
-            <value>
-            The name of the thread.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.TimeStamp">
-            <summary>
-            Gets or sets the time stamp.
-            </summary>
-            <value>
-            The time stamp.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.LocationInfo">
-            <summary>
-            Gets or sets the location information.
-            </summary>
-            <value>
-            The location information.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.UserName">
-            <summary>
-            Gets or sets the name of the user.
-            </summary>
-            <value>
-            The name of the user.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Identity">
-            <summary>
-            Gets or sets the identity.
-            </summary>
-            <value>
-            The identity.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.ExceptionString">
-            <summary>
-            Gets or sets the exception string.
-            </summary>
-            <value>
-            The exception string.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Domain">
-            <summary>
-            Gets or sets the domain.
-            </summary>
-            <value>
-            The domain.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LoggingData.Properties">
-            <summary>
-            Gets or sets the properties.
-            </summary>
-            <value>
-            The properties.
+            <c>true</c> if this instance is server manager; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="T:SuperSocket.SocketBase.Metadata.CommandAttribute">
@@ -1042,14 +2047,6 @@
             <returns></returns>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="M:SuperSocket.SocketBase.Extensions.GetStatusInfoMetadata(System.Type)">
-            <summary>
-            Gets the status info metadata from the server type.
-            </summary>
-            <param name="serverType">Type of the server.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
         <member name="M:SuperSocket.SocketBase.Extensions.CreateDefaultPoolItemCreator``1(SuperSocket.SocketBase.Pool.IPool{``0})">
             <summary>
             Creates the default pool item creator.
@@ -1067,53 +2064,12 @@
             <returns></returns>
             <exception cref="T:System.Exception">Command key definition was not found.</exception>
         </member>
-        <member name="T:SuperSocket.SocketBase.IWorkItemBase">
+        <member name="M:SuperSocket.SocketBase.Extensions.GetCurrentAppDomainExportProvider(System.AppDomain)">
             <summary>
-            An item can be started and stopped
+            Gets the current application domain's export provider.
             </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IWorkItemBase.Start">
-            <summary>
-            Starts this server instance.
-            </summary>
-            <returns>return true if start successfull, else false</returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IWorkItemBase.Stop">
-            <summary>
-            Stops this server instance.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IWorkItemBase.Name">
-            <summary>
-            Gets the name.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IWorkItemBase.SessionCount">
-            <summary>
-            Gets the total session count.
-            </summary>
-        </member>
-        <member name="T:SuperSocket.SocketBase.IWorkItem">
-            <summary>
-            An item can be started and stopped
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IWorkItem.Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Provider.ProviderFactoryInfo[])">
-            <summary>
-            Setups with the specified root config.
-            </summary>
-            <param name="bootstrap">The bootstrap.</param>
-            <param name="config">The socket server instance config.</param>
-            <param name="factories">The factories.</param>
+            <param name="appDomain">The application domain.</param>
             <returns></returns>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IWorkItem.State">
-            <summary>
-            Gets the current state of the work item.
-            </summary>
-            <value>
-            The state.
-            </value>
         </member>
         <member name="T:SuperSocket.SocketBase.Metadata.StatusInfoAttribute">
             <summary>
@@ -1237,14 +2193,14 @@
             <param name="serverConfigResolver">The server config resolver.</param>
             <returns></returns>
         </member>
-        <member name="M:SuperSocket.SocketBase.IBootstrap.Initialize(SuperSocket.SocketBase.Logging.ILogFactory)">
+        <member name="M:SuperSocket.SocketBase.IBootstrap.Initialize(AnyLog.ILogFactory)">
             <summary>
             Initializes the bootstrap with the configuration
             </summary>
             <param name="logFactory">The log factory.</param>
             <returns></returns>
         </member>
-        <member name="M:SuperSocket.SocketBase.IBootstrap.Initialize(System.Func{SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Config.IServerConfig},SuperSocket.SocketBase.Logging.ILogFactory)">
+        <member name="M:SuperSocket.SocketBase.IBootstrap.Initialize(System.Func{SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Config.IServerConfig},AnyLog.ILogFactory)">
             <summary>
             Initializes the bootstrap with the configuration
             </summary>
@@ -1286,16 +2242,6 @@
             The base directory.
             </value>
         </member>
-        <member name="T:SuperSocket.SocketBase.ILoggerProvider">
-            <summary>
-            The interface for who provides logger
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.ILoggerProvider.Logger">
-            <summary>
-            Gets the logger assosiated with this object.
-            </summary>
-        </member>
         <member name="T:SuperSocket.SocketBase.IsolationMode">
             <summary>
             AppServer instance running isolation mode
@@ -1314,1067 +2260,6 @@
         <member name="F:SuperSocket.SocketBase.IsolationMode.Process">
             <summary>
             Isolation by process
-            </summary>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Logging.ConsoleLog">
-            <summary>
-            Console Log
-            </summary>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Logging.ILog">
-            <summary>
-            Log interface
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Debug(System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Debug(System.Object,System.Exception)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.DebugFormat(System.String,System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.DebugFormat(System.String,System.Object[])">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.DebugFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.DebugFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Error(System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Error(System.Object,System.Exception)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.ErrorFormat(System.String,System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.ErrorFormat(System.String,System.Object[])">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.ErrorFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.ErrorFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Fatal(System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Fatal(System.Object,System.Exception)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.FatalFormat(System.String,System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.FatalFormat(System.String,System.Object[])">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.FatalFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.FatalFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Info(System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Info(System.Object,System.Exception)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.InfoFormat(System.String,System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.InfoFormat(System.String,System.Object[])">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.InfoFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.InfoFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Warn(System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Warn(System.Object,System.Exception)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.WarnFormat(System.String,System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.WarnFormat(System.String,System.Object[])">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.WarnFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.WarnFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILog.Log(SuperSocket.SocketBase.Logging.LoggingData)">
-            <summary>
-            Logs the specified logging data.
-            </summary>
-            <param name="loggingData">The logging data.</param>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ILog.IsDebugEnabled">
-            <summary>
-            Gets a value indicating whether this instance is debug enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is debug enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ILog.IsErrorEnabled">
-            <summary>
-            Gets a value indicating whether this instance is error enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is error enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ILog.IsFatalEnabled">
-            <summary>
-            Gets a value indicating whether this instance is fatal enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is fatal enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ILog.IsInfoEnabled">
-            <summary>
-            Gets a value indicating whether this instance is info enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is info enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ILog.IsWarnEnabled">
-            <summary>
-            Gets a value indicating whether this instance is warn enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is warn enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Logging.ConsoleLog"/> class.
-            </summary>
-            <param name="name">The name.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Debug(System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Debug(System.Object,System.Exception)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.DebugFormat(System.String,System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.DebugFormat(System.String,System.Object[])">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.DebugFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.DebugFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Error(System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Error(System.Object,System.Exception)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.ErrorFormat(System.String,System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.ErrorFormat(System.String,System.Object[])">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.ErrorFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.ErrorFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Fatal(System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Fatal(System.Object,System.Exception)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.FatalFormat(System.String,System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.FatalFormat(System.String,System.Object[])">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.FatalFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.FatalFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Info(System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Info(System.Object,System.Exception)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.InfoFormat(System.String,System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.InfoFormat(System.String,System.Object[])">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.InfoFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.InfoFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Warn(System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Warn(System.Object,System.Exception)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.WarnFormat(System.String,System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.WarnFormat(System.String,System.Object[])">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.WarnFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.WarnFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLog.Log(SuperSocket.SocketBase.Logging.LoggingData)">
-            <summary>
-            Logs the specified logging data.
-            </summary>
-            <param name="loggingData">The logging data.</param>
-            <exception cref="T:System.NotSupportedException"></exception>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ConsoleLog.IsDebugEnabled">
-            <summary>
-            Gets a value indicating whether this instance is debug enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is debug enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ConsoleLog.IsErrorEnabled">
-            <summary>
-            Gets a value indicating whether this instance is error enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is error enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ConsoleLog.IsFatalEnabled">
-            <summary>
-            Gets a value indicating whether this instance is fatal enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is fatal enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ConsoleLog.IsInfoEnabled">
-            <summary>
-            Gets a value indicating whether this instance is info enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is info enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.ConsoleLog.IsWarnEnabled">
-            <summary>
-            Gets a value indicating whether this instance is warn enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is warn enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Logging.ConsoleLogFactory">
-            <summary>
-            Console log factory
-            </summary>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Logging.ILogFactory">
-            <summary>
-            LogFactory Interface
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILogFactory.GetLog(System.String)">
-            <summary>
-            Gets the log by name.
-            </summary>
-            <param name="name">The name.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ILogFactory.GetLog(System.String,System.String)">
-            <summary>
-            Gets the log from the specific repository.
-            </summary>
-            <param name="repositoryName">Name of the repository.</param>
-            <param name="name">The name.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLogFactory.GetLog(System.String)">
-            <summary>
-            Gets the log by name.
-            </summary>
-            <param name="name">The name.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.ConsoleLogFactory.GetLog(System.String,System.String)">
-            <summary>
-            Gets the log from the specific repository.
-            </summary>
-            <param name="repositoryName">Name of the repository.</param>
-            <param name="name">The name.</param>
-            <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Logging.Log4NetLog">
-            <summary>
-            Log4NetLog
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.#ctor(log4net.ILog)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Logging.Log4NetLog"/> class.
-            </summary>
-            <param name="log">The log.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Debug(System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Debug(System.Object,System.Exception)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.DebugFormat(System.String,System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.DebugFormat(System.String,System.Object[])">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.DebugFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.DebugFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the debug message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Error(System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Error(System.Object,System.Exception)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.ErrorFormat(System.String,System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.ErrorFormat(System.String,System.Object[])">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.ErrorFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.ErrorFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Fatal(System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Fatal(System.Object,System.Exception)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.FatalFormat(System.String,System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.FatalFormat(System.String,System.Object[])">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.FatalFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.FatalFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the fatal error message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Info(System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Info(System.Object,System.Exception)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.InfoFormat(System.String,System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.InfoFormat(System.String,System.Object[])">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.InfoFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.InfoFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the info message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Warn(System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Warn(System.Object,System.Exception)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.WarnFormat(System.String,System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.WarnFormat(System.String,System.Object[])">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="provider">The provider.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.WarnFormat(System.String,System.Object,System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.WarnFormat(System.String,System.Object,System.Object,System.Object)">
-            <summary>
-            Logs the warning message.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="arg0">The arg0.</param>
-            <param name="arg1">The arg1.</param>
-            <param name="arg2">The arg2.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLog.Log(SuperSocket.SocketBase.Logging.LoggingData)">
-            <summary>
-            Logs the specified logging data.
-            </summary>
-            <param name="loggingData">The logging data.</param>
-            <exception cref="T:System.NotSupportedException"></exception>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.Log4NetLog.IsDebugEnabled">
-            <summary>
-            Gets a value indicating whether this instance is debug enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is debug enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.Log4NetLog.IsErrorEnabled">
-            <summary>
-            Gets a value indicating whether this instance is error enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is error enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.Log4NetLog.IsFatalEnabled">
-            <summary>
-            Gets a value indicating whether this instance is fatal enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is fatal enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.Log4NetLog.IsInfoEnabled">
-            <summary>
-            Gets a value indicating whether this instance is info enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is info enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.Log4NetLog.IsWarnEnabled">
-            <summary>
-            Gets a value indicating whether this instance is warn enabled.
-            </summary>
-            <value>
-            	<c>true</c> if this instance is warn enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Logging.Log4NetLogFactory">
-            <summary>
-            Log4NetLogFactory
-            </summary>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Logging.LogFactoryBase">
-            <summary>
-            LogFactory Base class
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.LogFactoryBase.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Logging.LogFactoryBase"/> class.
-            </summary>
-            <param name="configFile">The config file.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.LogFactoryBase.GetLog(System.String)">
-            <summary>
-            Gets the log by name.
-            </summary>
-            <param name="name">The name.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.LogFactoryBase.GetLog(System.String,System.String)">
-            <summary>
-            Gets the log from the specific repository.
-            </summary>
-            <param name="repositoryName">Name of the repository.</param>
-            <param name="name">The name.</param>
-            <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LogFactoryBase.ConfigFile">
-            <summary>
-            Gets the config file file path.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Logging.LogFactoryBase.IsSharedConfig">
-            <summary>
-            Gets a value indicating whether the server instance is running in isolation mode and the multiple server instances share the same logging configuration.
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLogFactory.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Logging.Log4NetLogFactory"/> class.
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLogFactory.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Logging.Log4NetLogFactory"/> class.
-            </summary>
-            <param name="log4netConfig">The log4net config.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLogFactory.GetLog(System.String)">
-            <summary>
-            Gets the log by name.
-            </summary>
-            <param name="name">The name.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Logging.Log4NetLogFactory.GetLog(System.String,System.String)">
-            <summary>
-            Gets the log from the specific repository.
-            </summary>
-            <param name="repositoryName">Name of the repository.</param>
-            <param name="name">The name.</param>
-            <returns></returns>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Metadata.DefaultAppServerMetadata">
-            <summary>
-            AppServer's default metadata type
             </summary>
         </member>
         <member name="T:SuperSocket.SocketBase.Metadata.AppServerMetadataTypeAttribute">
@@ -2688,6 +2573,26 @@
             <param name="count">The count.</param>
             <returns></returns>
         </member>
+        <member name="T:SuperSocket.SocketBase.ProtocolMode">
+            <summary>
+            Application protocol mode
+            </summary>
+        </member>
+        <member name="F:SuperSocket.SocketBase.ProtocolMode.CommandLine">
+            <summary>
+            The command line protocol
+            </summary>
+        </member>
+        <member name="F:SuperSocket.SocketBase.ProtocolMode.WebSocket">
+            <summary>
+            The web socket protocol
+            </summary>
+        </member>
+        <member name="F:SuperSocket.SocketBase.ProtocolMode.Custom">
+            <summary>
+            The custom protocol defined by yourself
+            </summary>
+        </member>
         <member name="T:SuperSocket.SocketBase.Protocol.CountSpliterReceiveFilter">
             <summary>
             This Receive filter is designed for this kind protocol:
@@ -2849,161 +2754,37 @@
             the new created request filer assosiated with this socketSession
             </returns>
         </member>
-        <member name="T:SuperSocket.SocketBase.Provider.ExportFactory">
+        <member name="T:SuperSocket.SocketBase.Provider.IProviderMetadata">
             <summary>
-            Export Factory
+            The provider metadata interface
             </summary>
         </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ExportFactory.#ctor">
+        <member name="P:SuperSocket.SocketBase.Provider.IProviderMetadata.Name">
             <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Provider.ExportFactory"/> class.
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ExportFactory.#ctor(System.Object)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Provider.ExportFactory"/> class.
-            </summary>
-            <param name="instance">The instance.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ExportFactory.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Provider.ExportFactory"/> class.
-            </summary>
-            <param name="typeName">Name of the type.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ExportFactory.EnsureInstance">
-            <summary>
-            Ensures the instance's existance.
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ExportFactory.CreateExport``1">
-            <summary>
-            Creates the export type instance.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ExportFactory.CreateExport``1(System.Func{System.Type,System.Object})">
-            <summary>
-            Creates the export type instance from the instance creator.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="creator">The creator.</param>
-            <returns></returns>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ExportFactory.TypeName">
-            <summary>
-            Gets or sets the type.
-            </summary>
-            <value>
-            The type.
-            </value>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Provider.ProviderFactoryInfo">
-            <summary>
-            Provider factory infomation
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ProviderFactoryInfo.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Provider.ProviderFactoryInfo"/> class.
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ProviderFactoryInfo.#ctor(SuperSocket.SocketBase.Provider.ProviderKey,System.String,System.Object)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Provider.ProviderFactoryInfo"/> class.
-            </summary>
-            <param name="key">The key.</param>
-            <param name="name">The name.</param>
-            <param name="instance">The instance.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ProviderFactoryInfo.#ctor(SuperSocket.SocketBase.Provider.ProviderKey,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Provider.ProviderFactoryInfo"/> class.
-            </summary>
-            <param name="key">The key.</param>
-            <param name="name">The name.</param>
-            <param name="typeName">Name of the type.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.Provider.ProviderFactoryInfo.#ctor(SuperSocket.SocketBase.Provider.ProviderKey,System.String,System.Type)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Provider.ProviderFactoryInfo"/> class.
-            </summary>
-            <param name="key">The key.</param>
-            <param name="name">The name.</param>
-            <param name="type">The type.</param>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderFactoryInfo.Key">
-            <summary>
-            Gets the key.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderFactoryInfo.Name">
-            <summary>
-            Gets or sets the name.
+            Gets the name.
             </summary>
             <value>
             The name.
             </value>
         </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderFactoryInfo.ExportFactory">
+        <member name="T:SuperSocket.SocketBase.Provider.ProviderMetadataAttribute">
             <summary>
-            Gets or sets the export factory.
-            </summary>
-            <value>
-            The export factory.
-            </value>
-        </member>
-        <member name="T:SuperSocket.SocketBase.Provider.ProviderKey">
-            <summary>
-            ProviderKey
+            Provider metadata attribute
             </summary>
         </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderKey.Name">
+        <member name="M:SuperSocket.SocketBase.Provider.ProviderMetadataAttribute.#ctor(System.String)">
             <summary>
-            Gets or sets the name.
+            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.Provider.ProviderMetadataAttribute"/> class.
+            </summary>
+            <param name="name">The name of the provider.</param>
+        </member>
+        <member name="P:SuperSocket.SocketBase.Provider.ProviderMetadataAttribute.Name">
+            <summary>
+            Gets the name.
             </summary>
             <value>
             The name.
             </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderKey.Type">
-            <summary>
-            Gets or sets the type.
-            </summary>
-            <value>
-            The type.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderKey.ServerType">
-            <summary>
-            Gets the service.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderKey.SocketServerFactory">
-            <summary>
-            Gets the socket server factory.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderKey.ConnectionFilter">
-            <summary>
-            Gets the connection filter.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderKey.LogFactory">
-            <summary>
-            Gets the log factory.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderKey.ReceiveFilterFactory">
-            <summary>
-            Gets the Receive filter factory.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.Provider.ProviderKey.CommandLoader">
-            <summary>
-            Gets the command loader.
-            </summary>
         </member>
         <member name="T:SuperSocket.SocketBase.RequestHandler`2">
             <summary>
@@ -3444,6 +3225,14 @@
             The type of the server.
             </value>
         </member>
+        <member name="P:SuperSocket.SocketBase.Config.IServerConfig.Protocol">
+            <summary>
+            Gets the protocol the server instance want to use.
+            </summary>
+            <value>
+            The protocol  the server instance want to use.
+            </value>
+        </member>
         <member name="P:SuperSocket.SocketBase.Config.IServerConfig.ReceiveFilterFactory">
             <summary>
             Gets the Receive filter factory.
@@ -3777,6 +3566,14 @@
             The type of the server.
             </value>
         </member>
+        <member name="P:SuperSocket.SocketBase.Config.ServerConfig.Protocol">
+            <summary>
+            Gets/sets the protocol the server instance want to use.
+            </summary>
+            <value>
+            The protocol  the server instance want to use.
+            </value>
+        </member>
         <member name="P:SuperSocket.SocketBase.Config.ServerConfig.ReceiveFilterFactory">
             <summary>
             Gets/sets the Receive filter factory.
@@ -4034,187 +3831,6 @@
             <value>
             The buffer pools configuration.
             </value>
-        </member>
-        <member name="T:SuperSocket.SocketBase.IAppServer">
-            <summary>
-            The interface for AppServer
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IAppServer.CreateAppSession(SuperSocket.SocketBase.ISocketSession)">
-            <summary>
-            Creates the app session.
-            </summary>
-            <param name="socketSession">The socket session.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IAppServer.RegisterSession(SuperSocket.SocketBase.IAppSession)">
-            <summary>
-            Registers the new created app session into the appserver's session container.
-            </summary>
-            <param name="session">The session.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IAppServer.GetSessionByID(System.String)">
-            <summary>
-            Gets the app session by ID.
-            </summary>
-            <param name="sessionID">The session ID.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IAppServer.ResetSessionSecurity(SuperSocket.SocketBase.IAppSession,System.Security.Authentication.SslProtocols)">
-            <summary>
-            Resets the session's security protocol.
-            </summary>
-            <param name="session">The session.</param>
-            <param name="security">The security protocol.</param>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IAppServer.StartedTime">
-            <summary>
-            Gets the started time.
-            </summary>
-            <value>
-            The started time.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IAppServer.Listeners">
-            <summary>
-            Gets or sets the listeners.
-            </summary>
-            <value>
-            The listeners.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IAppServer.ReceiveFilterFactory">
-            <summary>
-            Gets the Receive filter factory.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IAppServer.Config">
-            <summary>
-            Gets the server's config.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IAppServer.Certificate">
-            <summary>
-            Gets the certificate of current server.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IAppServer.BasicSecurity">
-            <summary>
-            Gets the transfer layer security protocol.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IAppServer.LogFactory">
-            <summary>
-            Gets the log factory.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.IAppServer.BufferManager">
-            <summary>
-            Gets the buffer manager.
-            </summary>
-            <value>
-            The buffer manager.
-            </value>
-        </member>
-        <member name="T:SuperSocket.SocketBase.IRawDataProcessor`1">
-            <summary>
-            The raw data processor
-            </summary>
-            <typeparam name="TAppSession">The type of the app session.</typeparam>
-        </member>
-        <member name="E:SuperSocket.SocketBase.IRawDataProcessor`1.RawDataReceived">
-            <summary>
-            Gets or sets the raw binary data received event handler.
-            TAppSession: session
-            byte[]: receive buffer
-            int: receive buffer offset
-            int: receive lenght
-            bool: whether process the received data further
-            </summary>
-        </member>
-        <member name="T:SuperSocket.SocketBase.IAppServer`1">
-            <summary>
-            The interface for AppServer
-            </summary>
-            <typeparam name="TAppSession">The type of the app session.</typeparam>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IAppServer`1.GetSessions(System.Func{`0,System.Boolean})">
-            <summary>
-            Gets the matched sessions from sessions snapshot.
-            </summary>
-            <param name="critera">The prediction critera.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IAppServer`1.GetAllSessions">
-            <summary>
-            Gets all sessions in sessions snapshot.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="E:SuperSocket.SocketBase.IAppServer`1.NewSessionConnected">
-            <summary>
-            Gets/sets the new session connected event handler.
-            </summary>
-        </member>
-        <member name="E:SuperSocket.SocketBase.IAppServer`1.SessionClosed">
-            <summary>
-            Gets/sets the session closed event handler.
-            </summary>
-        </member>
-        <member name="T:SuperSocket.SocketBase.IAppServer`2">
-            <summary>
-            The interface for AppServer
-            </summary>
-            <typeparam name="TAppSession">The type of the app session.</typeparam>
-            <typeparam name="TPackageInfo">The type of the request info.</typeparam>
-        </member>
-        <member name="E:SuperSocket.SocketBase.IAppServer`2.NewRequestReceived">
-            <summary>
-            Occurs when [request comming].
-            </summary>
-        </member>
-        <member name="T:SuperSocket.SocketBase.IRequestHandler`1">
-            <summary>
-            The interface for handler of session request
-            </summary>
-            <typeparam name="TPackageInfo">The type of the request info.</typeparam>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IRequestHandler`1.ExecuteCommand(SuperSocket.SocketBase.IAppSession,`0)">
-            <summary>
-            Executes the command.
-            </summary>
-            <param name="session">The session.</param>
-            <param name="requestInfo">The request info.</param>
-        </member>
-        <member name="T:SuperSocket.SocketBase.ISocketServerAccessor">
-            <summary>
-            SocketServer Accessor interface
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.ISocketServerAccessor.SocketServer">
-            <summary>
-            Gets the socket server.
-            </summary>
-            <value>
-            The socket server.
-            </value>
-        </member>
-        <member name="T:SuperSocket.SocketBase.IRemoteCertificateValidator">
-            <summary>
-            The basic interface for RemoteCertificateValidator
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.IRemoteCertificateValidator.Validate(SuperSocket.SocketBase.IAppSession,System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
-            <summary>
-            Validates the remote certificate
-            </summary>
-            <param name="session">The session.</param>
-            <param name="sender">The sender.</param>
-            <param name="certificate">The certificate.</param>
-            <param name="chain">The chain.</param>
-            <param name="sslPolicyErrors">The SSL policy errors.</param>
-            <returns></returns>
         </member>
         <member name="T:SuperSocket.SocketBase.IAppSession">
             <summary>
@@ -4539,7 +4155,7 @@
             Logger extension class
             </summary>
         </member>
-        <member name="M:SuperSocket.SocketBase.LoggerExtension.Error(SuperSocket.SocketBase.Logging.ILog,System.String,System.Exception,SuperSocket.SocketBase.ISessionBase)">
+        <member name="M:SuperSocket.SocketBase.LoggerExtension.Error(AnyLog.ILog,System.String,System.Exception,SuperSocket.SocketBase.ISessionBase)">
             <summary>
             Logs the error with the session's information
             </summary>
@@ -4548,7 +4164,7 @@
             <param name="e">The e.</param>
             <param name="session">The session.</param>
         </member>
-        <member name="M:SuperSocket.SocketBase.LoggerExtension.Error(SuperSocket.SocketBase.Logging.ILog,System.String,SuperSocket.SocketBase.ISessionBase)">
+        <member name="M:SuperSocket.SocketBase.LoggerExtension.Error(AnyLog.ILog,System.String,SuperSocket.SocketBase.ISessionBase)">
             <summary>
             Logs the error with the session's information
             </summary>
@@ -4556,7 +4172,7 @@
             <param name="message">The message.</param>
             <param name="session">The session.</param>
         </member>
-        <member name="M:SuperSocket.SocketBase.LoggerExtension.Info(SuperSocket.SocketBase.Logging.ILog,System.String,SuperSocket.SocketBase.ISessionBase)">
+        <member name="M:SuperSocket.SocketBase.LoggerExtension.Info(AnyLog.ILog,System.String,SuperSocket.SocketBase.ISessionBase)">
             <summary>
             Logs the information with the session's information
             </summary>
@@ -4564,7 +4180,7 @@
             <param name="message">The message.</param>
             <param name="session">The session.</param>
         </member>
-        <member name="M:SuperSocket.SocketBase.LoggerExtension.Debug(SuperSocket.SocketBase.Logging.ILog,System.String,SuperSocket.SocketBase.ISessionBase)">
+        <member name="M:SuperSocket.SocketBase.LoggerExtension.Debug(AnyLog.ILog,System.String,SuperSocket.SocketBase.ISessionBase)">
             <summary>
             Logs the debug message with the session's information
             </summary>
@@ -4869,518 +4485,6 @@
             </summary>
             <typeparam name="TAppSession">The type of the app session.</typeparam>
             <typeparam name="TPackageInfo">The type of the package info.</typeparam>
-        </member>
-        <member name="T:SuperSocket.SocketBase.AppServer`3">
-            <summary>
-            AppServer base class
-            </summary>
-            <typeparam name="TAppSession">The type of the app session.</typeparam>
-            <typeparam name="TPackageInfo">The type of the request info.</typeparam>
-            <typeparam name="TKey">The type of the package key.</typeparam>
-        </member>
-        <member name="F:SuperSocket.SocketBase.AppServer`3.NullAppSession">
-            <summary>
-            Null appSession instance
-            </summary>
-        </member>
-        <member name="F:SuperSocket.SocketBase.AppServer`3.m_StateCode">
-            <summary>
-            the current state's code
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.AppServer`2"/> class.
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.#ctor(SuperSocket.SocketBase.Protocol.IReceiveFilterFactory{`1})">
-            <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.SocketBase.AppServer`2"/> class.
-            </summary>
-            <param name="receiveFilterFactory">The Receive filter factory.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.GetCommandFilterAttributes(System.Type)">
-            <summary>
-            Gets the filter attributes.
-            </summary>
-            <param name="type">The type.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupCommands(System.Collections.Generic.Dictionary{System.String,SuperSocket.SocketBase.Command.ICommand{`0,`1}})">
-            <summary>
-            Setups the command into command dictionary
-            </summary>
-            <param name="discoveredCommands">The discovered commands.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(SuperSocket.SocketBase.Config.IRootConfig,SuperSocket.SocketBase.Config.IServerConfig)">
-            <summary>
-            Setups the specified root config.
-            </summary>
-            <param name="rootConfig">The root config.</param>
-            <param name="config">The config.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(System.Int32)">
-            <summary>
-            Setups with the specified port.
-            </summary>
-            <param name="port">The port.</param>
-            <returns>return setup result</returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.ISocketServerFactory,SuperSocket.SocketBase.Protocol.IReceiveFilterFactory{`1},SuperSocket.SocketBase.Logging.ILogFactory,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IConnectionFilter},System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.Command.ICommandLoader{SuperSocket.SocketBase.Command.ICommand{`0,`1}}})">
-            <summary>
-            Setups with the specified config.
-            </summary>
-            <param name="config">The server config.</param>
-            <param name="socketServerFactory">The socket server factory.</param>
-            <param name="receiveFilterFactory">The receive filter factory.</param>
-            <param name="logFactory">The log factory.</param>
-            <param name="connectionFilters">The connection filters.</param>
-            <param name="commandLoaders">The command loaders.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(SuperSocket.SocketBase.Config.IRootConfig,SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.ISocketServerFactory,SuperSocket.SocketBase.Protocol.IReceiveFilterFactory{`1},SuperSocket.SocketBase.Logging.ILogFactory,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IConnectionFilter},System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.Command.ICommandLoader{SuperSocket.SocketBase.Command.ICommand{`0,`1}}})">
-            <summary>
-            Setups the specified root config, this method used for programming setup
-            </summary>
-            <param name="rootConfig">The root config.</param>
-            <param name="config">The server config.</param>
-            <param name="socketServerFactory">The socket server factory.</param>
-            <param name="receiveFilterFactory">The Receive filter factory.</param>
-            <param name="logFactory">The log factory.</param>
-            <param name="connectionFilters">The connection filters.</param>
-            <param name="commandLoaders">The command loaders.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.Setup(System.String,System.Int32,SuperSocket.SocketBase.ISocketServerFactory,SuperSocket.SocketBase.Protocol.IReceiveFilterFactory{`1},SuperSocket.SocketBase.Logging.ILogFactory,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IConnectionFilter},System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.Command.ICommandLoader{SuperSocket.SocketBase.Command.ICommand{`0,`1}}})">
-            <summary>
-            Setups with the specified ip and port.
-            </summary>
-            <param name="ip">The ip.</param>
-            <param name="port">The port.</param>
-            <param name="socketServerFactory">The socket server factory.</param>
-            <param name="receiveFilterFactory">The Receive filter factory.</param>
-            <param name="logFactory">The log factory.</param>
-            <param name="connectionFilters">The connection filters.</param>
-            <param name="commandLoaders">The command loaders.</param>
-            <returns>return setup result</returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IWorkItem#Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Provider.ProviderFactoryInfo[])">
-            <summary>
-            Setups the specified root config.
-            </summary>
-            <param name="bootstrap">The bootstrap.</param>
-            <param name="config">The socket server instance config.</param>
-            <param name="factories">The factories.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupCommandLoaders(System.Collections.Generic.List{SuperSocket.SocketBase.Command.ICommandLoader{SuperSocket.SocketBase.Command.ICommand{`0,`1}}})">
-            <summary>
-            Setups the command loaders.
-            </summary>
-            <param name="commandLoaders">The command loaders.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.CreateLogger(System.String)">
-            <summary>
-            Creates the logger for the AppServer.
-            </summary>
-            <param name="loggerName">Name of the logger.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupSecurity(SuperSocket.SocketBase.Config.IServerConfig)">
-            <summary>
-            Setups the security option of socket communications.
-            </summary>
-            <param name="config">The config of the server instance.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.GetCertificate(SuperSocket.SocketBase.Config.ICertificateConfig)">
-            <summary>
-            Gets the certificate from server configuguration.
-            </summary>
-            <param name="certificate">The certificate config.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.ValidateClientCertificate(`0,System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
-            <summary>
-            Validates the client certificate. This method is only used if the certificate configuration attribute "clientCertificateRequired" is true.
-            </summary>
-            <param name="session">The session.</param>
-            <param name="sender">The sender.</param>
-            <param name="certificate">The certificate.</param>
-            <param name="chain">The chain.</param>
-            <param name="sslPolicyErrors">The SSL policy errors.</param>
-            <returns>return the validation result</returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupSocketServer">
-            <summary>
-            Setups the socket server.instance
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SetupListeners(SuperSocket.SocketBase.Config.IServerConfig)">
-            <summary>
-            Setups the listeners base on server configuration
-            </summary>
-            <param name="config">The config.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.Start">
-            <summary>
-            Starts this server instance.
-            </summary>
-            <returns>
-            return true if start successfull, else false
-            </returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.OnStartup">
-            <summary>
-            Called when [startup].
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.OnStarted">
-            <summary>
-            Called when [started].
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.OnStopped">
-            <summary>
-            Called when [stopped].
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.Stop">
-            <summary>
-            Stops this server instance.
-            </summary>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.GetCommandByName(`2)">
-            <summary>
-            Gets command by command name.
-            </summary>
-            <param name="commandName">Name of the command.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.OnRawDataReceived(SuperSocket.SocketBase.IAppSession,System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Called when [raw data received].
-            </summary>
-            <param name="session">The session.</param>
-            <param name="buffer">The buffer.</param>
-            <param name="offset">The offset.</param>
-            <param name="length">The length.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.ExecuteCommand(SuperSocket.SocketBase.IRequestExecutingContext{`0,`1})">
-            <summary>
-            Executes the command.
-            </summary>
-            <param name="context">The context.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.ExecuteCommand(SuperSocket.SocketBase.IAppSession,`1)">
-            <summary>
-            Executes the command for the session.
-            </summary>
-            <param name="session">The session.</param>
-            <param name="requestInfo">The request info.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IRequestHandler{TPackageInfo}#ExecuteCommand(SuperSocket.SocketBase.IAppSession,`1)">
-            <summary>
-            Executes the command.
-            </summary>
-            <param name="session">The session.</param>
-            <param name="requestInfo">The request info.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.ExecuteConnectionFilters(System.Net.IPEndPoint)">
-            <summary>
-            Executes the connection filters.
-            </summary>
-            <param name="remoteAddress">The remote address.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#CreateAppSession(SuperSocket.SocketBase.ISocketSession)">
-            <summary>
-            Creates the app session.
-            </summary>
-            <param name="socketSession">The socket session.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.CreateAppSession(SuperSocket.SocketBase.ISocketSession)">
-            <summary>
-            create a new TAppSession instance, you can override it to create the session instance in your own way
-            </summary>
-            <param name="socketSession">the socket session.</param>
-            <returns>the new created session instance</returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#RegisterSession(SuperSocket.SocketBase.IAppSession)">
-            <summary>
-            Registers the new created app session into the appserver's session container.
-            </summary>
-            <param name="session">The session.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.OnNewSessionConnected(`0)">
-            <summary>
-            Called when [new session connected].
-            </summary>
-            <param name="session">The session.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.ResetSessionSecurity(SuperSocket.SocketBase.IAppSession,System.Security.Authentication.SslProtocols)">
-            <summary>
-            Resets the session's security protocol.
-            </summary>
-            <param name="session">The session.</param>
-            <param name="security">The security protocol.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.OnSocketSessionClosed(SuperSocket.SocketBase.ISocketSession,SuperSocket.SocketBase.CloseReason)">
-            <summary>
-            Called when [socket session closed].
-            </summary>
-            <param name="session">The socket session.</param>
-            <param name="reason">The reason.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.OnSessionClosed(`0,SuperSocket.SocketBase.CloseReason)">
-            <summary>
-            Called when [session closed].
-            </summary>
-            <param name="session">The appSession.</param>
-            <param name="reason">The reason.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.RegisterSession(System.String,`0)">
-            <summary>
-            Registers the session into session container.
-            </summary>
-            <param name="sessionID">The session ID.</param>
-            <param name="appSession">The app session.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.GetSessionByID(System.String)">
-            <summary>
-            Gets the app session by ID.
-            </summary>
-            <param name="sessionID">The session ID.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#GetSessionByID(System.String)">
-            <summary>
-            Gets the app session by ID.
-            </summary>
-            <param name="sessionID"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.ClearIdleSession(System.Object)">
-            <summary>
-            Clears the idle session.
-            </summary>
-            <param name="state">The state.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.GetSessions(System.Func{`0,System.Boolean})">
-            <summary>
-            Gets the matched sessions from sessions snapshot.
-            </summary>
-            <param name="critera">The prediction critera.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.GetAllSessions">
-            <summary>
-            Gets all sessions in sessions snapshot.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.GetFilePath(System.String)">
-            <summary>
-            Gets the physical file path by the relative file path,
-            search both in the appserver's root and in the supersocket root dir if the isolation level has been set other than 'None'.
-            </summary>
-            <param name="relativeFilePath">The relative file path.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IActiveConnector#ActiveConnect(System.Net.EndPoint)">
-            <summary>
-            Connect the remote endpoint actively.
-            </summary>
-            <param name="targetEndPoint">The target end point.</param>
-            <returns></returns>
-            <exception cref="T:System.Exception">This server cannot support active connect.</exception>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#ISystemEndPoint#TransferSystemMessage(System.String,System.Object)">
-            <summary>
-            Transfers the system message
-            </summary>
-            <param name="messageType">Type of the message.</param>
-            <param name="messageData">The message data.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.OnSystemMessageReceived(System.String,System.Object)">
-            <summary>
-            Called when [system message received].
-            </summary>
-            <param name="messageType">Type of the message.</param>
-            <param name="messageData">The message data.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.UpdateServerStatus(SuperSocket.SocketBase.StatusInfoCollection)">
-            <summary>
-            Updates the summary of the server.
-            </summary>
-            <param name="serverStatus">The server status.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.OnServerStatusCollected(SuperSocket.SocketBase.StatusInfoCollection,SuperSocket.SocketBase.StatusInfoCollection)">
-            <summary>
-            Called when [server status collected].
-            </summary>
-            <param name="bootstrapStatus">The bootstrapStatus status.</param>
-            <param name="serverStatus">The server status.</param>
-        </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.Dispose">
-            <summary>
-            Releases unmanaged and - optionally - managed resources
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.Config">
-            <summary>
-            Gets the server's config.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.State">
-            <summary>
-            Gets the current state of the work item.
-            </summary>
-            <value>
-            The state.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.Certificate">
-            <summary>
-            Gets the certificate of current server.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#BufferManager">
-            <summary>
-            Gets the buffer manager.
-            </summary>
-            <value>
-            The buffer manager.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.ReceiveFilterFactory">
-            <summary>
-            Gets or sets the receive filter factory.
-            </summary>
-            <value>
-            The receive filter factory.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IAppServer#ReceiveFilterFactory">
-            <summary>
-            Gets the Receive filter factory.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.BasicSecurity">
-            <summary>
-            Gets the basic transfer layer security protocol.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.RootConfig">
-            <summary>
-            Gets the root config.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.Logger">
-            <summary>
-            Gets the logger assosiated with this object.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.Bootstrap">
-            <summary>
-            Gets the bootstrap of this appServer instance.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.TotalHandledRequests">
-            <summary>
-            Gets the total handled requests number.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.Listeners">
-            <summary>
-            Gets or sets the listeners inforamtion.
-            </summary>
-            <value>
-            The listeners.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.StartedTime">
-            <summary>
-            Gets the started time of this server instance.
-            </summary>
-            <value>
-            The started time.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.LogFactory">
-            <summary>
-            Gets or sets the log factory.
-            </summary>
-            <value>
-            The log factory.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.TextEncoding">
-            <summary>
-            Gets the default text encoding.
-            </summary>
-            <value>
-            The text encoding.
-            </value>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.Name">
-            <summary>
-            Gets the name of the server instance.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#ISocketServerAccessor#SocketServer">
-            <summary>
-            Gets the socket server.
-            </summary>
-            <value>
-            The socket server.
-            </value>
-        </member>
-        <member name="E:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IRawDataProcessor{TAppSession}#RawDataReceived">
-            <summary>
-            Gets or sets the raw binary data received event handler.
-            TAppSession: session
-            byte[]: receive buffer
-            int: receive buffer offset
-            int: receive lenght
-            bool: whether process the received data further
-            </summary>
-        </member>
-        <member name="E:SuperSocket.SocketBase.AppServer`3.NewRequestReceived">
-            <summary>
-            Occurs when a full request item received.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.ConnectionFilters">
-            <summary>
-            Gets or sets the server's connection filter
-            </summary>
-            <value>
-            The server's connection filters
-            </value>
-        </member>
-        <member name="E:SuperSocket.SocketBase.AppServer`3.NewSessionConnected">
-            <summary>
-            The action which will be executed after a new session connect
-            </summary>
-        </member>
-        <member name="E:SuperSocket.SocketBase.AppServer`3.SessionClosed">
-            <summary>
-            Gets/sets the session closed event handler.
-            </summary>
-        </member>
-        <member name="P:SuperSocket.SocketBase.AppServer`3.SessionCount">
-            <summary>
-            Gets the total session count.
-            </summary>
         </member>
         <member name="M:SuperSocket.SocketBase.AppServer`2.#ctor">
             <summary>

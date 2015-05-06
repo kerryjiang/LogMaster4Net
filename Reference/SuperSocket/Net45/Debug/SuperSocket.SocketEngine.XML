@@ -29,12 +29,12 @@
             <c>true</c> if [status metadata extended]; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="M:SuperSocket.SocketEngine.AppDomainAppServer.#ctor(System.String,SuperSocket.SocketBase.Metadata.StatusInfoAttribute[])">
+        <member name="M:SuperSocket.SocketEngine.AppDomainAppServer.#ctor(System.String,SuperSocket.SocketBase.Metadata.AppServerMetadata)">
             <summary>
             Initializes a new instance of the <see cref="T:SuperSocket.SocketEngine.AppDomainAppServer"/> class.
             </summary>
             <param name="serverTypeName">Name of the server type.</param>
-            <param name="serverStatusMetadata">The server status metadata.</param>
+            <param name="serverMetadata">The server metadata.</param>
         </member>
         <member name="M:SuperSocket.SocketEngine.AppDomainAppServer.Start">
             <summary>
@@ -43,25 +43,6 @@
             <returns>
             return true if start successfull, else false
             </returns>
-        </member>
-        <member name="M:SuperSocket.SocketEngine.WorkItemFactoryInfoLoader.ValidateProviderType(System.String)">
-            <summary>
-            Validates the type of the provider, needn't validate in default mode, because it will be validate later when initializing.
-            </summary>
-            <param name="typeName">Name of the type.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketEngine.WorkItemFactoryInfoLoader.GetServerTypeMetadata(System.String)">
-            <summary>
-            Gets the app server type's metadata, the return value is not required in this mode.
-            </summary>
-            <param name="typeName">Name of the type.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketEngine.WorkItemFactoryInfoLoader.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
         </member>
         <member name="T:SuperSocket.SocketEngine.DefaultBootstrap">
             <summary>
@@ -83,6 +64,19 @@
             Global log
             </summary>
         </member>
+        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.GetBootstrapLogFactory">
+            <summary>
+            Gets the bootstrap log factory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.GetBootstrapLogFactory(System.String)">
+            <summary>
+            Gets the bootstrap log factory.
+            </summary>
+            <param name="logFactory">The selected log factory.</param>
+            <returns></returns>
+        </member>
         <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.#ctor(System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IWorkItem})">
             <summary>
             Initializes a new instance of the <see cref="T:SuperSocket.SocketEngine.DefaultBootstrap"/> class.
@@ -96,7 +90,7 @@
             <param name="rootConfig">The root config.</param>
             <param name="appServers">The app servers.</param>
         </member>
-        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.#ctor(SuperSocket.SocketBase.Config.IRootConfig,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IWorkItem},SuperSocket.SocketBase.Logging.ILogFactory)">
+        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.#ctor(SuperSocket.SocketBase.Config.IRootConfig,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IWorkItem},AnyLog.ILogFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:SuperSocket.SocketEngine.DefaultBootstrap"/> class.
             </summary>
@@ -117,20 +111,11 @@
             <param name="config">The config.</param>
             <param name="startupConfigFile">The startup config file.</param>
         </member>
-        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.CreateWorkItemInstance(System.String,SuperSocket.SocketBase.Metadata.StatusInfoAttribute[])">
+        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.CreateWorkItemInstance(System.String)">
             <summary>
             Creates the work item instance.
             </summary>
             <param name="serviceTypeName">Name of the service type.</param>
-            <param name="serverStatusMetadata">The server status metadata.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.GetWorkItemFactoryInfoLoader(SuperSocket.SocketBase.Config.IConfigurationSource,SuperSocket.SocketBase.Logging.ILogFactory)">
-            <summary>
-            Gets the work item factory info loader.
-            </summary>
-            <param name="config">The config.</param>
-            <param name="logFactory">The log factory.</param>
             <returns></returns>
         </member>
         <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.Initialize(System.Collections.Generic.IDictionary{System.String,System.Net.IPEndPoint})">
@@ -140,7 +125,7 @@
             <param name="listenEndPointReplacement">The listen end point replacement.</param>
             <returns></returns>
         </member>
-        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.Initialize(System.Func{SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Config.IServerConfig},SuperSocket.SocketBase.Logging.ILogFactory)">
+        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.Initialize(System.Func{SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Config.IServerConfig},AnyLog.ILogFactory)">
             <summary>
             Initializes the bootstrap with the configuration, config resolver and log factory.
             </summary>
@@ -155,7 +140,7 @@
             <param name="serverConfigResolver">The server config resolver.</param>
             <returns></returns>
         </member>
-        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.Initialize(SuperSocket.SocketBase.Logging.ILogFactory)">
+        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.Initialize(AnyLog.ILogFactory)">
             <summary>
             Initializes the bootstrap with the configuration
             </summary>
@@ -193,6 +178,11 @@
         <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.Dispose">
             <summary>
             Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:SuperSocket.SocketEngine.DefaultBootstrap.SuperSocket#SocketBase#ILoggerProvider#Logger">
+            <summary>
+            Gets the bootstrap logger.
             </summary>
         </member>
         <member name="P:SuperSocket.SocketEngine.DefaultBootstrap.LogFactory">
@@ -251,7 +241,7 @@
             <param name="serverConfigResolver">The server config resolver.</param>
             <returns></returns>
         </member>
-        <member name="M:SuperSocket.SocketEngine.AppDomainBootstrap.Initialize(SuperSocket.SocketBase.Logging.ILogFactory)">
+        <member name="M:SuperSocket.SocketEngine.AppDomainBootstrap.Initialize(AnyLog.ILogFactory)">
             <summary>
             Initializes the bootstrap with the configuration and config resolver.
             </summary>
@@ -265,7 +255,7 @@
             <param name="listenEndPointReplacement">The listen end point replacement.</param>
             <returns></returns>
         </member>
-        <member name="M:SuperSocket.SocketEngine.AppDomainBootstrap.Initialize(System.Func{SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Config.IServerConfig},SuperSocket.SocketBase.Logging.ILogFactory)">
+        <member name="M:SuperSocket.SocketEngine.AppDomainBootstrap.Initialize(System.Func{SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Config.IServerConfig},AnyLog.ILogFactory)">
             <summary>
             Initializes the bootstrap with the configuration
             </summary>
@@ -294,6 +284,11 @@
             Gets the config.
             </summary>
         </member>
+        <member name="P:SuperSocket.SocketEngine.AppDomainBootstrap.SuperSocket#SocketBase#ILoggerProvider#Logger">
+            <summary>
+            Gets the bootstrap logger.
+            </summary>
+        </member>
         <member name="P:SuperSocket.SocketEngine.AppDomainBootstrap.StartupConfigFile">
             <summary>
             Gets the startup config file.
@@ -308,6 +303,12 @@
             <summary>
             Initializes a new instance of the <see cref="T:SuperSocket.SocketEngine.AssemblyImport"/> class.
             </summary>
+        </member>
+        <member name="M:SuperSocket.SocketEngine.AssemblyImport.RegisterAssembplyImport(System.AppDomain)">
+            <summary>
+            Registers the assembply import.
+            </summary>
+            <param name="hostAppDomain">The host application domain.</param>
         </member>
         <member name="T:SuperSocket.SocketEngine.BootstrapFactory">
             <summary>
@@ -340,6 +341,18 @@
             </summary>
             <param name="configFile">The configuration file.</param>
             <returns></returns>
+        </member>
+        <member name="T:SuperSocket.SocketEngine.ConfigurationWatcher">
+            <summary>
+            The configuration file watcher, it is used for hot configuration updating
+            </summary>
+        </member>
+        <member name="M:SuperSocket.SocketEngine.ConfigurationWatcher.Watch(System.Configuration.ConfigurationSection,SuperSocket.SocketBase.IBootstrap)">
+            <summary>
+            Watches the specified configuration section.
+            </summary>
+            <param name="configSection">The configuration section.</param>
+            <param name="bootstrap">The bootstrap.</param>
         </member>
         <member name="T:SuperSocket.SocketEngine.Configuration.BufferPoolConfig">
             <summary>
@@ -455,6 +468,14 @@
             <summary>
             Gets the mode.
             </summary>
+        </member>
+        <member name="P:SuperSocket.SocketEngine.Configuration.Server.Protocol">
+            <summary>
+            Gets the protocol the server instance want to use.
+            </summary>
+            <value>
+            The protocol  the server instance want to use.
+            </value>
         </member>
         <member name="P:SuperSocket.SocketEngine.Configuration.Server.RequestHandlingMode">
             <summary>
@@ -846,7 +867,7 @@
             IRemoteWorkItem
             </summary>
         </member>
-        <member name="M:SuperSocket.SocketEngine.IRemoteWorkItem.Setup(System.String,System.String,System.String,SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Provider.ProviderFactoryInfo[])">
+        <member name="M:SuperSocket.SocketEngine.IRemoteWorkItem.Setup(System.String,System.String,System.String,SuperSocket.SocketBase.Config.IServerConfig)">
             <summary>
             Setups the specified config.
             </summary>
@@ -854,15 +875,14 @@
             <param name="bootstrapUri">The bootstrap URI.</param>
             <param name="assemblyImportRoot">The assembly import root.</param>
             <param name="config">The config.</param>
-            <param name="factories">The factories.</param>
             <returns></returns>
         </member>
-        <member name="M:SuperSocket.SocketEngine.ProcessAppServer.#ctor(System.String,SuperSocket.SocketBase.Metadata.StatusInfoAttribute[])">
+        <member name="M:SuperSocket.SocketEngine.ProcessAppServer.#ctor(System.String,SuperSocket.SocketBase.Metadata.AppServerMetadata)">
             <summary>
             Initializes a new instance of the <see cref="T:SuperSocket.SocketEngine.ProcessAppServer"/> class.
             </summary>
             <param name="serverTypeName">Name of the server type.</param>
-            <param name="serverStatusMetadata">The server status metadata.</param>
+            <param name="serverMetadata">The server metadata.</param>
         </member>
         <member name="P:SuperSocket.SocketEngine.ProcessAppServer.ProcessId">
             <summary>
@@ -1015,14 +1035,20 @@
             </summary>
             <param name="serviceTypeName">Name of the service type.</param>
         </member>
-        <member name="M:SuperSocket.SocketEngine.MarshalAppServer.Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig,SuperSocket.SocketBase.Provider.ProviderFactoryInfo[])">
+        <member name="M:SuperSocket.SocketEngine.MarshalAppServer.Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig)">
             <summary>
             Setups the specified root config.
             </summary>
             <param name="bootstrap">The bootstrap.</param>
             <param name="config">The socket server instance config.</param>
-            <param name="factories">The providers.</param>
             <returns></returns>
+        </member>
+        <member name="M:SuperSocket.SocketEngine.MarshalAppServer.ReportPotentialConfigChange(SuperSocket.SocketBase.Config.IServerConfig)">
+            <summary>
+            Reports the potential configuration change.
+            </summary>
+            <param name="config">The server config which may be changed.</param>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="M:SuperSocket.SocketEngine.MarshalAppServer.Start">
             <summary>

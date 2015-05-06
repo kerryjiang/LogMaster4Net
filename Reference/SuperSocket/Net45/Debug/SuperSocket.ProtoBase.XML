@@ -394,7 +394,7 @@
             <summary>
             Reads a Int16 number from the current data source.
             </summary>
-            <param name="littleEndian">if set to <c>true</c> [little endian].</param>
+            <param name="littleEndian">if set to <c>true</c> read the value as little endian, otherwise big endian.</param>
             <returns></returns>
         </member>
         <member name="M:SuperSocket.ProtoBase.IBufferReader.ReadUInt16">
@@ -407,14 +407,8 @@
             <summary>
             Reads a UInt16 number from the current data source.
             </summary>
-            <param name="littleEndian">if set to <c>true</c> [little endian].</param>
+            <param name="littleEndian">if set to <c>true</c> read the value as little endian, otherwise big endian.</param>
             <returns></returns>
-        </member>
-        <member name="M:SuperSocket.ProtoBase.IBufferReader.Skip(System.Int32)">
-            <summary>
-            Skips the specified count bytes from the data source.
-            </summary>
-            <param name="count">The count.</param>
         </member>
         <member name="M:SuperSocket.ProtoBase.IBufferReader.ReadInt32">
             <summary>
@@ -426,7 +420,7 @@
             <summary>
             Reads a Int32 number from the current data source.
             </summary>
-            <param name="littleEndian">if set to <c>true</c> [little endian].</param>
+            <param name="littleEndian">if set to <c>true</c> read the value as little endian, otherwise big endian.</param>
             <returns></returns>
         </member>
         <member name="M:SuperSocket.ProtoBase.IBufferReader.ReadUInt32">
@@ -439,7 +433,7 @@
             <summary>
             Reads a UInt32 number from the current data source.
             </summary>
-            <param name="littleEndian">if set to <c>true</c> [little endian].</param>
+            <param name="littleEndian">if set to <c>true</c> read the value as little endian, otherwise big endian.</param>
             <returns></returns>
         </member>
         <member name="M:SuperSocket.ProtoBase.IBufferReader.ReadInt64">
@@ -452,7 +446,7 @@
             <summary>
             Reads a Int64 number from the current data source.
             </summary>
-            <param name="littleEndian">if set to <c>true</c> [little endian].</param>
+            <param name="littleEndian">if set to <c>true</c> read the value as little endian, otherwise big endian.</param>
             <returns></returns>
         </member>
         <member name="M:SuperSocket.ProtoBase.IBufferReader.ReadUInt64">
@@ -465,7 +459,7 @@
             <summary>
             Reads a UInt64 number from the current data source.
             </summary>
-            <param name="littleEndian">if set to <c>true</c> [little endian].</param>
+            <param name="littleEndian">if set to <c>true</c> read the value as little endian, otherwise big endian.</param>
             <returns></returns>
         </member>
         <member name="M:SuperSocket.ProtoBase.IBufferReader.ReadByte">
@@ -487,9 +481,15 @@
             <summary>
             Reads a string from the current data source
             </summary>
-            <param name="length">The length.</param>
+            <param name="length">The length of the string in bytes.</param>
             <param name="encoding">The encoding.</param>
             <returns></returns>
+        </member>
+        <member name="M:SuperSocket.ProtoBase.IBufferReader.Skip(System.Int32)">
+            <summary>
+            Skips the specified count bytes from the data source.
+            </summary>
+            <param name="count">The number of bytes to skip.</param>
         </member>
         <member name="M:SuperSocket.ProtoBase.IBufferReader.Take(System.Int32)">
             <summary>
@@ -506,22 +506,33 @@
             The length.
             </value>
         </member>
+        <member name="P:SuperSocket.ProtoBase.IBufferReader.Position">
+            <summary>
+            Gets or sets the logical position.
+            </summary>
+            <value>
+            The logical position.
+            </value>
+        </member>
         <member name="T:SuperSocket.ProtoBase.BufferListReader">
             <summary>
             The default buffer list reader
             </summary>
         </member>
-        <member name="M:SuperSocket.ProtoBase.BufferListReader.#ctor">
+        <member name="F:SuperSocket.ProtoBase.BufferListReader.m_Segments">
             <summary>
-            Initializes a new instance of the <see cref="T:SuperSocket.ProtoBase.BufferListReader"/> class.
+            The segments that make up the buffer.
             </summary>
         </member>
-        <member name="M:SuperSocket.ProtoBase.BufferListReader.Initialize(System.Collections.Generic.IList{System.ArraySegment{System.Byte}})">
+        <member name="F:SuperSocket.ProtoBase.BufferListReader.m_Length">
             <summary>
-            Initializes the reader with the data source segments.
+            The total length of all the segments.
             </summary>
-            <param name="segments">The segments.</param>
-            <exception cref="T:System.ArgumentException">The length of segments must be greater than zero.</exception>
+        </member>
+        <member name="F:SuperSocket.ProtoBase.BufferListReader.m_Buffer">
+            <summary>
+            Buffer used for temporary storage before conversion into primitives
+            </summary>
         </member>
         <member name="M:SuperSocket.ProtoBase.BufferListReader.GetCurrent">
             <summary>
@@ -536,21 +547,19 @@
             <typeparam name="TReader">The type of the reader.</typeparam>
             <returns></returns>
         </member>
+        <member name="M:SuperSocket.ProtoBase.BufferListReader.Initialize(System.Collections.Generic.IList{System.ArraySegment{System.Byte}})">
+            <summary>
+            Initializes the reader with the data source segments.
+            </summary>
+            <param name="segments">The segments.</param>
+            <exception cref="T:System.ArgumentException">
+            The number of elements containted in <paramref name="segments"/> must be greater than zero.
+            </exception>
+        </member>
         <member name="M:SuperSocket.ProtoBase.BufferListReader.Reset">
             <summary>
             Resets this reader.
             </summary>
-        </member>
-        <member name="M:SuperSocket.ProtoBase.BufferListReader.FillBuffer(System.Int32)">
-            <summary>
-            Fills the buffer.
-            </summary>
-            <param name="length">The length.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            length;the length must between 1 and 8
-            or
-            length;there is no enough data to read
-            </exception>
         </member>
         <member name="M:SuperSocket.ProtoBase.BufferListReader.ReadInt16">
             <summary>
@@ -584,7 +593,7 @@
             </summary>
             <param name="count">The count.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            count;count cannot be zero or negative
+            count;count cannot be negative
             or
             count;exceed the total length
             </exception>
@@ -661,7 +670,7 @@
             <summary>
             Reads a string from the current data source
             </summary>
-            <param name="length">The length.</param>
+            <param name="length">The length of the string in bytes.</param>
             <param name="encoding">The encoding.</param>
             <returns></returns>
             <exception cref="T:System.ArgumentOutOfRangeException">length;there is no enougth data</exception>
@@ -678,13 +687,73 @@
             Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             </summary>
         </member>
+        <member name="M:SuperSocket.ProtoBase.BufferListReader.FillBuffer(System.Int32)">
+            <summary>
+            Fills the buffer.
+            </summary>
+            <param name="length">The length.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            length;the length must between 1 and 8
+            or
+            length;there is no enough data to read
+            </exception>
+        </member>
+        <member name="M:SuperSocket.ProtoBase.BufferListReader.CheckInitialized">
+            <summary>
+            Check to see if this instance is initialized.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            This instance is not initialized.s
+            </exception>
+        </member>
+        <member name="M:SuperSocket.ProtoBase.BufferListReader.IsDataAvailable">
+            <summary>
+            Determines if there is any more data available base on the current position.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SuperSocket.ProtoBase.BufferListReader.BigEndianFromBytes(System.Byte[],System.Int32)">
+            <summary>
+            Gets a <see cref="T:System.Int64"/> value by reading the buffer as a big endian integer.
+            </summary>
+            <param name="buffer">The buffer to read the data from.</param>
+            <param name="bytesToConvert">The number bytes to convert.</param>
+            <returns></returns>
+            <remarks>
+            Code taken from Jon Skeet's Miscellaneous Utility Library
+            &lt;a href="http://www.yoda.arachsys.com/csharp/miscutil/"&gt;Jon Skeet's Miscellaneous Utility Library&lt;/a&gt;
+            </remarks>
+        </member>
+        <member name="M:SuperSocket.ProtoBase.BufferListReader.LittleEndianFromBytes(System.Byte[],System.Int32)">
+            <summary>
+            Gets a <see cref="T:System.Int64"/> value by reading the buffer as a little endian integer.
+            </summary>
+            <param name="buffer">The buffer to read the data from.</param>
+            <param name="bytesToConvert">The number bytes to convert.</param>
+            <returns></returns>
+            <remarks>
+            Code taken from Jon Skeet's Miscellaneous Utility Library
+            &lt;a href="http://www.yoda.arachsys.com/csharp/miscutil/"&gt;Jon Skeet's Miscellaneous Utility Library&lt;/a&gt;
+            </remarks>
+        </member>
         <member name="P:SuperSocket.ProtoBase.BufferListReader.Length">
             <summary>
-            Gets the total length.
+            Gets the total length of the all bufers in bytes.
             </summary>
             <value>
             The length.
             </value>
+        </member>
+        <member name="P:SuperSocket.ProtoBase.BufferListReader.Position">
+            <summary>
+            Gets or sets the logical position.
+            </summary>
+            <value>
+            The logical position.
+            </value>
+            <exception cref="T:System.InvalidOperationException">
+            Not initialized or trying to set the position outside the bounds of the buffer list.
+            </exception>
         </member>
         <member name="T:SuperSocket.ProtoBase.BufferListStream">
             <summary>
@@ -912,6 +981,22 @@
             <param name="receiveFilter">The receive filter.</param>
             <param name="data">The data.</param>
             <returns></returns>
+        </member>
+        <member name="M:SuperSocket.ProtoBase.Extensions.CopyTo(System.Collections.Generic.IList{System.ArraySegment{System.Byte}},System.ArraySegment{System.Byte})">
+            <summary>
+            Copies data of data segment list to a data segment.
+            </summary>
+            <param name="packageData">The package data.</param>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:SuperSocket.ProtoBase.Extensions.CopyTo(System.Collections.Generic.IList{System.ArraySegment{System.Byte}},System.ArraySegment{System.Byte},System.Int32,System.Int32)">
+            <summary>
+            Copies data of data segment list to a data segment.
+            </summary>
+            <param name="packageData">The source segments data.</param>
+            <param name="data">The destination segment.</param>
+            <param name="srcOffset">The source offset.</param>
+            <param name="length">The length.</param>
         </member>
         <member name="T:SuperSocket.ProtoBase.FilterState">
             <summary>
@@ -1614,6 +1699,11 @@
             String package info class
             </summary>
         </member>
+        <member name="M:SuperSocket.ProtoBase.StringPackageInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperSocket.ProtoBase.StringPackageInfo"/> class.
+            </summary>
+        </member>
         <member name="M:SuperSocket.ProtoBase.StringPackageInfo.#ctor(System.String,System.String,System.String[])">
             <summary>
             Initializes a new instance of the <see cref="T:SuperSocket.ProtoBase.StringPackageInfo"/> class.
@@ -1627,6 +1717,13 @@
             Initializes a new instance of the <see cref="T:SuperSocket.ProtoBase.StringPackageInfo"/> class.
             </summary>
             <param name="source">The source.</param>
+            <param name="sourceParser">The source parser.</param>
+        </member>
+        <member name="M:SuperSocket.ProtoBase.StringPackageInfo.InitializeData(System.String,SuperSocket.ProtoBase.IStringParser)">
+            <summary>
+            Initializes the string package's data.
+            </summary>
+            <param name="source">The source string.</param>
             <param name="sourceParser">The source parser.</param>
         </member>
         <member name="M:SuperSocket.ProtoBase.StringPackageInfo.GetFirstParam">

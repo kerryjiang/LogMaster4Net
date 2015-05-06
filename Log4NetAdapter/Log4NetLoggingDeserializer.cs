@@ -1,6 +1,4 @@
-﻿using LogMaster4Net.Base;
-using SuperSocket.SocketBase.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel.Composition;
@@ -8,11 +6,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using AnyLog;
+using LogMaster4Net.Base;
 
 namespace LogMaster4Net.Log4NetAdapter
 {
     [Export(typeof(ILoggingDeserializer))]
-    [ExportMetadata("Name", "log4net")]
+    [LoggingDeserializerMetadata("log4net")]
     public class Log4NetLoggingDeserializer : ILoggingDeserializer
     {
         private static readonly Dictionary<string, Action<LoggingData, XmlReader>> m_AttrAssignersDict;

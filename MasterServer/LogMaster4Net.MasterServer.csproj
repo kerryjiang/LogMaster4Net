@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\Reference\log4net.dll</HintPath>
+    <Reference Include="AnyLog">
+      <HintPath>..\packages\AnyLog.0.1.4.0\lib\net40\AnyLog.dll</HintPath>
     </Reference>
     <Reference Include="SuperSocket.Common">
       <HintPath>..\Reference\SuperSocket\Net40\$(Configuration)\SuperSocket.Common.dll</HintPath>
@@ -61,6 +61,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="LoggingDeserializerCompositeTarget.cs" />
     <Compile Include="LoggingPackageInfo.cs" />
     <Compile Include="LoggingSession.cs" />
     <Compile Include="LogMasterServer.cs" />
@@ -74,6 +75,7 @@
     <None Include="Config\log4net.unix.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="SuperSocket.SocketService.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -82,10 +84,6 @@
     <ProjectReference Include="..\Base\LogMaster4Net.Base.csproj">
       <Project>{ef0d6fb5-5350-42b6-85c2-49c5194d53e5}</Project>
       <Name>LogMaster4Net.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Log4NetAdapter\LogMaster4Net.Log4NetAdapter.csproj">
-      <Project>{94edfb3d-fb54-4025-ad62-8ce9b5341b60}</Project>
-      <Name>LogMaster4Net.Log4NetAdapter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

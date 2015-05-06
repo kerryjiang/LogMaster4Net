@@ -1,17 +1,17 @@
-﻿using LogMaster4Net.Base;
-using LogMaster4Net.Log4NetAdapter;
-using SuperSocket.ProtoBase;
-using SuperSocket.SocketBase;
-using SuperSocket.SocketBase.Config;
-using SuperSocket.SocketBase.Logging;
-using SuperSocket.SocketBase.Protocol;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AnyLog;
+using LogMaster4Net.Base;
+using SuperSocket.ProtoBase;
+using SuperSocket.SocketBase;
+using SuperSocket.SocketBase.Config;
+using SuperSocket.SocketBase.Protocol;
 
 namespace LogMaster4Net.MasterServer
 {
@@ -24,19 +24,16 @@ namespace LogMaster4Net.MasterServer
             get { return m_LoggingDeserializer; }
         }
 
-        //[ImportMany]
-        //private IEnumerable<Lazy<ILoggingDeserializer, ILoggingDeserializerMetadata>> m_LoggingDeserializers;
-
         public LogMasterServer()
             : base(new DefaultReceiveFilterFactory<LogReceiveFilter, LoggingPackageInfo>())
         {
             this.NewRequestReceived += LogMasterServer_NewRequestReceived;
         }
 
-        protected override bool Setup(IRootConfig rootConfig, IServerConfig config)
+        protected override void RegisterCompositeTarget(IList<ICompositeTarget> targets)
         {
-            m_LoggingDeserializer = new Log4NetLoggingDeserializer();
-            return base.Setup(rootConfig, config);
+            base.RegisterCompositeTarget(targets);
+            targets.Add(new LoggingDeserializerCompositeTarget((value) => m_LoggingDeserializer = value));
         }
 
         protected override void OnStarted()

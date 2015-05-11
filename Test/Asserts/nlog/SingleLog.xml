@@ -1,0 +1,12 @@
+﻿<log4j:event logger="LogMaster" level="INFO" timestamp="1430927905137" thread="1">
+  <log4j:message>Hello World</log4j:message>
+  <log4j:NDC />
+  <log4j:locationInfo class="NLogTest.Program" method="Void Main(System.String[])" file="d:\WorkShop\LogMaster4Net\NLogTest\Program.cs" line="21" />
+  <nlog:eventSequenceNumber>5</nlog:eventSequenceNumber>
+  <nlog:locationInfo assembly="NLogTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  <nlog:properties />
+  <log4j:properties>
+    <log4j:data name="log4japp" value="Testapp" />
+    <log4j:data name="log4jmachinename" value="KERRYINSPIRON" />
+  </log4j:properties>
+</log4j:event>

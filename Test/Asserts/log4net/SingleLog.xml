@@ -1,5 +1,5 @@
 ﻿<log4net:event logger="LogMaster" timestamp="2014-09-19T20:52:40.3347898-07:00" level="INFO" thread="12640" domain="SuperSocket.SocketService.exe" username="KERRYINSPIRON\Kerry">
-  <log4net:message>Current Time: 09/19/2014 20:52:40</log4net:message>
+  <log4net:message>Hello World</log4net:message>
   <log4net:properties>
     <log4net:data name="log4net:HostName" value="KerryInspiron" />
     <log4net:data name="LogAppName" value="TestApp" />

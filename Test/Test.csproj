@@ -37,6 +37,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\Reference\nunit.framework.dll</HintPath>
     </Reference>
@@ -50,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Log4NetTest.cs" />
+    <Compile Include="NLogTest.cs" />
     <Compile Include="UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,18 +67,26 @@
       <Project>{94edfb3d-fb54-4025-ad62-8ce9b5341b60}</Project>
       <Name>LogMaster4Net.Log4NetAdapter</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NLogAdapter\LogMaster4Net.NLogAdapter.csproj">
+      <Project>{b8aaf85a-7f5c-4d38-8ee5-8315d12bebc8}</Project>
+      <Name>LogMaster4Net.NLogAdapter</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Asserts\MultipleLog.xml">
+    <Content Include="Asserts\log4net\MultipleLog.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Asserts\ExceptionLog.xml">
+    <Content Include="Asserts\log4net\ExceptionLog.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Asserts\SingleLog.xml">
+    <Content Include="Asserts\log4net\SingleLog.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Asserts\nlog\SingleLog.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

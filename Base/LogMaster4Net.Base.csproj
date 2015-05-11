@@ -49,6 +49,7 @@
     <Compile Include="ILoggingDeserializerMetadata.cs" />
     <Compile Include="LoggingDeserializerMetadataAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlLoggingDeserializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

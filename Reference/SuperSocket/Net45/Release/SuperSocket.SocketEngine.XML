@@ -77,20 +77,20 @@
             <param name="logFactory">The selected log factory.</param>
             <returns></returns>
         </member>
-        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.#ctor(System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IWorkItem})">
+        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.#ctor(System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IManagedApp})">
             <summary>
             Initializes a new instance of the <see cref="T:SuperSocket.SocketEngine.DefaultBootstrap"/> class.
             </summary>
             <param name="appServers">The app servers.</param>
         </member>
-        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.#ctor(SuperSocket.SocketBase.Config.IRootConfig,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IWorkItem})">
+        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.#ctor(SuperSocket.SocketBase.Config.IRootConfig,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IManagedApp})">
             <summary>
             Initializes a new instance of the <see cref="T:SuperSocket.SocketEngine.DefaultBootstrap"/> class.
             </summary>
             <param name="rootConfig">The root config.</param>
             <param name="appServers">The app servers.</param>
         </member>
-        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.#ctor(SuperSocket.SocketBase.Config.IRootConfig,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IWorkItem},AnyLog.ILogFactory)">
+        <member name="M:SuperSocket.SocketEngine.DefaultBootstrap.#ctor(SuperSocket.SocketBase.Config.IRootConfig,System.Collections.Generic.IEnumerable{SuperSocket.SocketBase.IManagedApp},AnyLog.ILogFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:SuperSocket.SocketEngine.DefaultBootstrap"/> class.
             </summary>
@@ -862,12 +862,12 @@
             The process id. If the process id is zero, the server instance is not running
             </value>
         </member>
-        <member name="T:SuperSocket.SocketEngine.IRemoteWorkItem">
+        <member name="T:SuperSocket.SocketEngine.IRemoteManagedApp">
             <summary>
             IRemoteWorkItem
             </summary>
         </member>
-        <member name="M:SuperSocket.SocketEngine.IRemoteWorkItem.Setup(System.String,System.String,System.String,SuperSocket.SocketBase.Config.IServerConfig)">
+        <member name="M:SuperSocket.SocketEngine.IRemoteManagedApp.Setup(System.String,System.String,System.String,SuperSocket.SocketBase.Config.IServerConfig)">
             <summary>
             Setups the specified config.
             </summary>

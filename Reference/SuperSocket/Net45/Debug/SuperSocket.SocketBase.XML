@@ -51,12 +51,12 @@
             The interface for AppServer
             </summary>
         </member>
-        <member name="T:SuperSocket.SocketBase.IWorkItem">
+        <member name="T:SuperSocket.SocketBase.IManagedApp">
             <summary>
             An item can be started and stopped
             </summary>
         </member>
-        <member name="T:SuperSocket.SocketBase.IWorkItemBase">
+        <member name="T:SuperSocket.SocketBase.IManagedAppBase">
             <summary>
             An item can be started and stopped
             </summary>
@@ -96,42 +96,42 @@
             <param name="messageType">Type of the message.</param>
             <param name="messageData">The message data.</param>
         </member>
-        <member name="M:SuperSocket.SocketBase.IWorkItemBase.Start">
+        <member name="M:SuperSocket.SocketBase.IManagedAppBase.Start">
             <summary>
             Starts this server instance.
             </summary>
             <returns>return true if start successfull, else false</returns>
         </member>
-        <member name="M:SuperSocket.SocketBase.IWorkItemBase.ReportPotentialConfigChange(SuperSocket.SocketBase.Config.IServerConfig)">
+        <member name="M:SuperSocket.SocketBase.IManagedAppBase.ReportPotentialConfigChange(SuperSocket.SocketBase.Config.IServerConfig)">
             <summary>
             Reports the potential configuration change.
             </summary>
             <param name="config">The server config which may be changed.</param>
         </member>
-        <member name="M:SuperSocket.SocketBase.IWorkItemBase.Stop">
+        <member name="M:SuperSocket.SocketBase.IManagedAppBase.Stop">
             <summary>
             Stops this server instance.
             </summary>
         </member>
-        <member name="P:SuperSocket.SocketBase.IWorkItemBase.Name">
+        <member name="P:SuperSocket.SocketBase.IManagedAppBase.Name">
             <summary>
             Gets the name.
             </summary>
         </member>
-        <member name="P:SuperSocket.SocketBase.IWorkItemBase.SessionCount">
+        <member name="P:SuperSocket.SocketBase.IManagedAppBase.SessionCount">
             <summary>
             Gets the total session count.
             </summary>
         </member>
-        <member name="M:SuperSocket.SocketBase.IWorkItem.Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig)">
+        <member name="M:SuperSocket.SocketBase.IManagedApp.Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig)">
             <summary>
-            Setups with the specified root config.
+            Setups with bootstrap and server config.
             </summary>
             <param name="bootstrap">The bootstrap.</param>
             <param name="config">The socket server instance config.</param>
             <returns></returns>
         </member>
-        <member name="P:SuperSocket.SocketBase.IWorkItem.State">
+        <member name="P:SuperSocket.SocketBase.IManagedApp.State">
             <summary>
             Gets the current state of the work item.
             </summary>
@@ -484,9 +484,9 @@
             <param name="commandLoaders">The command loaders.</param>
             <returns>return setup result</returns>
         </member>
-        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IWorkItem#Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig)">
+        <member name="M:SuperSocket.SocketBase.AppServer`3.SuperSocket#SocketBase#IManagedApp#Setup(SuperSocket.SocketBase.IBootstrap,SuperSocket.SocketBase.Config.IServerConfig)">
             <summary>
-            Setups the specified root config.
+            Setups with bootstrap and server config.
             </summary>
             <param name="bootstrap">The bootstrap.</param>
             <param name="config">The socket server instance config.</param>

@@ -14,6 +14,8 @@ namespace LogMaster4Net.NLogAdapter
     [LoggingDeserializerMetadata("NLog")]
     public class NLogLoggingDeserializer : XmlLoggingDeserializer
     {
+        private static readonly DateTime m_Log4jDateBase = new DateTime(1970, 1, 1);
+
         public NLogLoggingDeserializer()
             : base(new Dictionary<string, Action<LoggingData, XmlReader>>(StringComparer.OrdinalIgnoreCase)
             {
@@ -22,7 +24,7 @@ namespace LogMaster4Net.NLogAdapter
                 { "username", (l, r) => l.UserName = r.Value },
                 { "thread", (l, r) => l.ThreadName = r.Value },
                 { "level", (l, r) => l.Level = r.Value },
-                { "timestamp", (l, r) => l.TimeStamp = DateTime.FromBinary(long.Parse(r.Value)) },
+                { "timestamp", (l, r) => l.TimeStamp = m_Log4jDateBase.AddMilliseconds(long.Parse(r.Value)).ToLocalTime() },
                 { "message", (l, r) => l.Message = r.ReadElementContentAsString() },
                 { "properties", ReadProperties },
                 { "throwable", ReadException },

@@ -32,7 +32,7 @@ namespace LogMaster4Net.NLogAdapter
                 {"timestamp", (l, r) => l.TimeStamp = DateTime.FromBinary(long.Parse(r.Value))},
                 {"message", (l, r) => l.Message = r.ReadElementContentAsString()},
                 {"properties", ReadProperties},
-                {"exception", ReadException}
+                {"throwable", ReadException}
             };
         }
 

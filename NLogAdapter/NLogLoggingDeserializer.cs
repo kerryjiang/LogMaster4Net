@@ -15,14 +15,7 @@ namespace LogMaster4Net.NLogAdapter
     public class NLogLoggingDeserializer : XmlLoggingDeserializer
     {
         public NLogLoggingDeserializer()
-            : base()
-        {
-
-        }
-
-        protected override Dictionary<string, Action<LoggingData, XmlReader>> GetAttrAssigners()
-        {
-            return new Dictionary<string, Action<LoggingData, XmlReader>>(StringComparer.OrdinalIgnoreCase)
+            : base(new Dictionary<string, Action<LoggingData, XmlReader>>(StringComparer.OrdinalIgnoreCase)
             {
                 {"logger", (l, r) => l.LoggerName = r.Value},
                 {"domain", (l, r) => l.Domain = r.Value},
@@ -33,7 +26,9 @@ namespace LogMaster4Net.NLogAdapter
                 {"message", (l, r) => l.Message = r.ReadElementContentAsString()},
                 {"properties", ReadProperties},
                 {"throwable", ReadException}
-            };
+            })
+        {
+
         }
 
         protected override void RegisterXmlNamespaces(XmlNamespaceManager namespaceManager)
@@ -42,7 +37,7 @@ namespace LogMaster4Net.NLogAdapter
             namespaceManager.AddNamespace("nlog", "urn:nlog");
         }
 
-        protected override void AssignApplicationName(LoggingData logging)
+        protected override void Prepare(LoggingData logging)
         {
             if (logging.Properties != null)
                 logging.ApplicationName = logging.Properties["log4japp"];

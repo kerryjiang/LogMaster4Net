@@ -8,25 +8,20 @@ using AnyLog;
 
 namespace LogMaster4Net.Base
 {
-    public abstract class XmlLoggingDeserializer : ILoggingDeserializer
+    public abstract class XmlLoggingDeserializer : XmlElementParser<LoggingData>, ILoggingDeserializer
     {
-        private readonly Dictionary<string, Action<LoggingData, XmlReader>> m_AttrAssignersDict;
-
         private readonly XmlNamespaceManager m_XmlNamespaceManager;
 
-        protected XmlLoggingDeserializer()
+        protected XmlLoggingDeserializer(Dictionary<string, Action<LoggingData, XmlReader>> assigners)
+            : base(assigners)
         {
-            m_AttrAssignersDict = GetAttrAssigners();
-
             m_XmlNamespaceManager = new XmlNamespaceManager(new NameTable());
             RegisterXmlNamespaces(m_XmlNamespaceManager);
         }
 
-        protected abstract Dictionary<string, Action<LoggingData, XmlReader>> GetAttrAssigners();
-
         protected abstract void RegisterXmlNamespaces(XmlNamespaceManager namespaceManager);
 
-        protected void ReadException(LoggingData logging, XmlReader reader)
+        protected static void ReadException(LoggingData logging, XmlReader reader)
         {
             reader.Read();
             logging.ExceptionString = reader.Value;
@@ -34,7 +29,7 @@ namespace LogMaster4Net.Base
             reader.ReadEndElement();
         }
 
-        protected void ReadProperties(LoggingData logging, XmlReader reader)
+        protected static void ReadProperties(LoggingData logging, XmlReader reader)
         {
             reader.MoveToContent();
 
@@ -85,54 +80,14 @@ namespace LogMaster4Net.Base
 
             while (xmlReader.NodeType != XmlNodeType.None)
             {
-                var logging = ReadLoggingData(xmlReader);
+                var logging = Parse(xmlReader);
+                Prepare(logging);
                 logs.Add(logging);
             }
 
             return logs;
         }
 
-        protected abstract void AssignApplicationName(LoggingData logging);
-
-        protected virtual LoggingData ReadLoggingData(XmlReader xmlReader)
-        {
-            var logging = new LoggingData();
-
-            xmlReader.MoveToContent();
-
-            Action<LoggingData, XmlReader> attrAssigner;
-
-            if (xmlReader.MoveToFirstAttribute())
-            {
-                if (m_AttrAssignersDict.TryGetValue(xmlReader.Name, out attrAssigner))
-                    attrAssigner(logging, xmlReader);
-
-                while (xmlReader.MoveToNextAttribute())
-                {
-                    if (m_AttrAssignersDict.TryGetValue(xmlReader.Name, out attrAssigner))
-                        attrAssigner(logging, xmlReader);
-                }
-            }
-
-            xmlReader.MoveToElement();
-
-            if (xmlReader.Read() && xmlReader.NodeType != XmlNodeType.EndElement)
-            {
-                while (xmlReader.NodeType != XmlNodeType.EndElement)
-                {
-                    if (string.IsNullOrEmpty(xmlReader.LocalName))
-                        break;
-
-                    if (m_AttrAssignersDict.TryGetValue(xmlReader.LocalName, out attrAssigner))
-                        attrAssigner(logging, xmlReader);
-                    else
-                        xmlReader.Skip();
-                }
-            }
-
-            xmlReader.ReadEndElement();
-
-            return logging;
-        }
+        protected abstract void Prepare(LoggingData logging);
     }
 }

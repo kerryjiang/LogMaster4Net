@@ -16,14 +16,7 @@ namespace LogMaster4Net.Log4NetAdapter
     public class Log4NetLoggingDeserializer : XmlLoggingDeserializer
     {
         public Log4NetLoggingDeserializer()
-            : base()
-        {
-
-        }
-
-        protected override Dictionary<string, Action<LoggingData, XmlReader>> GetAttrAssigners()
-        {
-            return new Dictionary<string, Action<LoggingData, XmlReader>>(StringComparer.OrdinalIgnoreCase)
+            : base(new Dictionary<string, Action<LoggingData, XmlReader>>(StringComparer.OrdinalIgnoreCase)
             {
                 { "logger", (l, r) => l.LoggerName = r.Value },
                 { "domain", (l, r) => l.Domain = r.Value },
@@ -42,7 +35,9 @@ namespace LogMaster4Net.Log4NetAdapter
                         { "line", (l, r) => l.LineNumber = r.Value }
                     }, (log, location) => log.LocationInfo = location)
                 }
-            };
+            })
+        {
+
         }
 
         protected override void RegisterXmlNamespaces(XmlNamespaceManager namespaceManager)
@@ -50,7 +45,7 @@ namespace LogMaster4Net.Log4NetAdapter
             namespaceManager.AddNamespace("log4net", "urn:log4net");
         }
 
-        protected override void AssignApplicationName(LoggingData logging)
+        protected override void Prepare(LoggingData logging)
         {
             if (logging.Properties != null)
                 logging.ApplicationName = logging.Properties["LogAppName"];

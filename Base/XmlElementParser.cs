@@ -10,6 +10,7 @@ namespace LogMaster4Net.Base
     public static class XmlElementParser
     {
         public static Action<LoggingData, XmlReader> CreateParser<T>(Dictionary<string, Action<T, XmlReader>> assigners, Action<LoggingData, T> loggingAction)
+            where T : class, new()
         {
             var parser = new XmlElementParser<T>(assigners);
             return new Action<LoggingData, XmlReader>((logging, reader) => loggingAction(logging, parser.Parse(reader)));
@@ -17,6 +18,7 @@ namespace LogMaster4Net.Base
     }
 
     public class XmlElementParser<T>
+        where T : class, new()
     {
         private Dictionary<string, Action<T, XmlReader>> m_Assigners;
         public XmlElementParser(Dictionary<string, Action<T, XmlReader>> assigners)
@@ -26,7 +28,7 @@ namespace LogMaster4Net.Base
 
         public T Parse(XmlReader xmlReader)
         {
-            T entity = default(T);
+            T entity = new T();
 
             xmlReader.MoveToContent();
 

@@ -1415,6 +1415,13 @@
             <param name="result">The result.</param>
             <returns></returns>
         </member>
+        <member name="M:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2.Sort(System.Collections.Generic.IEnumerable{System.Lazy{`0,`1}})">
+            <summary>
+            Sorts the specified factories by priority.
+            </summary>
+            <param name="factories">The factories.</param>
+            <returns></returns>
+        </member>
         <member name="M:SuperSocket.SocketBase.CompositeTargets.SingleResultCompositeTargetCore`2.MetadataNameEqual(`1,System.String)">
             <summary>
             Match the metadata by the name.

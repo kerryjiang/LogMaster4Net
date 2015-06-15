@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AnyLog">
-      <HintPath>..\packages\AnyLog.0.1.4.0\lib\net40\AnyLog.dll</HintPath>
+    <Reference Include="AnyLog, Version=0.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AnyLog.0.1.5.0\lib\net40\AnyLog.dll</HintPath>
     </Reference>
     <Reference Include="SuperSocket.Common">
       <HintPath>..\Reference\SuperSocket\Net40\$(Configuration)\SuperSocket.Common.dll</HintPath>
@@ -69,6 +70,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config\nlog.unix.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Config\log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -38,6 +38,7 @@ LogMaster4Net 用法之 Log4Net
 			<appender name="udpAppender" type="log4net.Appender.UdpAppender">
 		      <remoteAddress value="[ServerAddress]" />
 		      <remotePort value="2020" />
+			  <encoding value="utf-8"/>
 		      <layout type="log4net.Layout.XmlLayout">
 		          <locationInfo value="true" />
 		      </layout>

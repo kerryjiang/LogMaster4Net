@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0-*",
+  "buildOptions": {
+    "debugType": "portable",
+    "compile": {
+      "include": [
+        "../../Log4NetAdapter/Log4NetLoggingDeserializer.cs"
+      ],
+      "excludeFiles": [
+        "../../Log4NetAdapter/Properties/AssemblyInfo.cs"
+      ]
+    }
+  },
+  "dependencies": {
+    "LogMaster4Net.Base": "*"
+  },
+  "frameworks": {
+    "netstandard1.3": {
+      "buildOptions": {
+        "define": [ "DOTNETCORE" ]
+      },
+      "imports": "portable-net45+win8",
+      "dependencies": {
+        "System.Collections.Specialized": "4.0.1",
+        "System.Xml.ReaderWriter": "4.0.11"
+      }
+    }
+  }
+}

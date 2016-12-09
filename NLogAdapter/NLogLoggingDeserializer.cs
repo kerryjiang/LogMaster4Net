@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+#if DOTNETCORE
+using System.Composition;
+#else
 using System.ComponentModel.Composition;
+#endif
 using System.Linq;
 using System.Text;
 using System.Xml;

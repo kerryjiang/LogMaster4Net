@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+#if DOTNETCORE
+using System.Composition;
+#else
 using System.ComponentModel.Composition;
+#endif
 using System.Linq;
 using System.Text;
 

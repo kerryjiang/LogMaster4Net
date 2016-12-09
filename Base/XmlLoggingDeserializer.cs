@@ -71,11 +71,18 @@ namespace LogMaster4Net.Base
             var logs = new List<LoggingData>();
 
             var context = new XmlParserContext(null, m_XmlNamespaceManager, null, XmlSpace.None);
-            var xmlReader = new XmlTextReader(log, XmlNodeType.Element, context)
+
+#if !DOTNETCORE
+            var xmlReader = new XmlTextReader(log, XmlNodeType.Element, context);
+            xmlReader.WhitespaceHandling = WhitespaceHandling.None;
+#else
+            var xmlReaderSettings = new XmlReaderSettings
             {
-                WhitespaceHandling = WhitespaceHandling.None
+                IgnoreWhitespace = true
             };
 
+            var xmlReader = XmlReader.Create(new System.IO.StringReader(log), xmlReaderSettings, context);
+#endif
             xmlReader.Read();
 
             while (xmlReader.NodeType != XmlNodeType.None)

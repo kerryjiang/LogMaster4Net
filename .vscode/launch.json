@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "env": {
+                "cwd": "${workspaceRoot}/dotnet/LogMaster4Net.MasterServer"
+            },
+            "preLaunchTask": "build",            
+            "program": "${workspaceRoot}/dotnet/LogMaster4Net.MasterServer/bin/Debug/netcoreapp1.0/LogMaster4Net.MasterServer.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}/dotnet/LogMaster4Net.MasterServer",
+            "stopAtEntry": false,
+            "externalConsole": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": 0
+        }
+    ]
+}

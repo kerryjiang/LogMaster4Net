@@ -2,7 +2,8 @@
   "projects": [
     "LogMaster4Net.Base",
     "LogMaster4Net.Log4NetAdapter",
-    "LogMaster4Net.NLogAdapter"
+    "LogMaster4Net.NLogAdapter",
+    "LogMaster4Net.MasterServer"
   ],
   "sdk": {
     "version": "1.0.0-rc2-*"
